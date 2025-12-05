@@ -17,6 +17,8 @@ function construirCoordenadesCache(dades) {
 }
 
 function inicialitzarMapa() {
+  if (map) return; // si el mapa ja existeix, no fer res
+
   map = L.map("map").setView([41.3851, 2.1734], 8);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -38,6 +40,7 @@ function inicialitzarMapa() {
     }
   });
 }
+
 
 // Obtenir coordenades (prioritzant dades, després cache, sinó genèric)
 function obtenirCoordenades(d) {
