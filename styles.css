@@ -1,0 +1,75 @@
+/* TIPOGRAFIA I COLORS */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .section-title {
+    font-weight: 700;
+    color: #1f3a60;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* BOTONS SUPERIORS */
+  .btn-top {
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 0.3rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-top-grafics {
+    background-color: #1f3a60;
+    color: white;
+  }
+  .btn-top-grafics:hover {
+    background-color: #162940;
+  }
+  
+  .btn-top-mapa {
+    background-color: #2c7a7b;
+    color: white;
+  }
+  .btn-top-mapa:hover {
+    background-color: #1f5a5b;
+  }
+  
+  /* SELECTS I FILTRES */
+  select.form-select {
+    border-radius: 0.3rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  select.form-select:focus {
+    border-color: #1f3a60;
+    box-shadow: 0 0 5px rgba(31, 58, 96, 0.5);
+    outline: none;
+  }
+  
+  /* GRÀFICS */
+  canvas {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block;
+    margin: 20px auto;
+  }
+  
+  /* MAPA */
+  #map {
+    width: 100%;
+    height: 600px;
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+  }
+  
+  /* ROWS I MARGES */
+  .row > div {
+    margin-bottom: 1rem;
+  }
+  
