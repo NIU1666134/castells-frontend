@@ -4,10 +4,13 @@ let coordenadesCache = {};
 
 // Carregar dades des de l'API proxy (Node.js)
 async function carregarDades() {
+  const loader = document.getElementById('loader');
+  loader.style.display = 'block'; // mostrar loader
+
   console.log("Iniciant càrrega de dades...");
 
   try {
-    const response = await fetch("https://castells-proxy.onrender.com/api/actuacions")
+    const response = await fetch("https://castells-proxy.onrender.com/api/actuacions");
     const data = await response.json();
 
     if (Array.isArray(data.results)) {
@@ -18,30 +21,27 @@ async function carregarDades() {
       console.warn("L'API no ha retornat un array vàlid.");
     }
 
-    // Construir cache de coordenades per al mapa
-    if (typeof construirCoordenadesCache === "function") {
-      construirCoordenadesCache(dadesCastells);
-      console.log("Cache de coordenades construït");
-    }
+    // Construir cache de coordenades
+    construirCoordenadesCache(dadesCastells);
 
     // Omplir filtres gràfics i mapa
     omplirFiltres();
     omplirFiltresMapa();
-    console.log("Filtres omplerts");
 
     // Dibuixar gràfics i mapa
     dibuixarGrafics();
-    if (typeof inicialitzarMapa === "function" && !map) {
-      inicialitzarMapa(); // inicialitza el mapa si encara no està inicialitzat
-    } else if (typeof dibuixarMapa === "function") {
-      dibuixarMapa(); // si ja està inicialitzat, només dibuixa markers
+    if (!map) {
+      inicialitzarMapa();
+    } else {
+      dibuixarMapa();
     }
 
   } catch (err) {
     console.error("ERROR carregant dades API:", err);
+  } finally {
+    loader.style.display = 'none'; // amagar loader
   }
 }
-
 
 
 
