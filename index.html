@@ -22,6 +22,11 @@
 
 <body>
 
+  <!-- LOADER -->
+  <div id="loader" style="display: none; position: fixed; top:50%; left:50%; transform:translate(-50%, -50%); font-size: 1.5em; background: rgba(255,255,255,0.9); padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #000; z-index: 1000;">
+    Carregant dades...
+  </div>
+
   <!-- MENÚ SUPERIOR -->
   <div class="container my-4 text-center">
     <button class="btn-top btn-top-grafics me-2" onclick="mostrarGrafics()">Gràfics</button>
@@ -89,7 +94,7 @@
       </div>
     </div>
 
-    <div id="map"></div>
+    <div id="map" style="height: 600px;"></div>
   </div>
 
   <!-- LLIBRERIES -->
@@ -123,5 +128,6 @@
   </script>
 </body>
 </html>
+
 
 
