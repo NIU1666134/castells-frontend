@@ -133,12 +133,11 @@ function dibuixarMapa() {
 
   dadesFiltrades.forEach(d => {
     const { lat, lon } = obtenirCoordenades(d);
-
     const lloc = d.show?.place ?? d.city?.name ?? "Localització desconeguda";
-    const key = `${lat}_${lon}`;
 
-    if (!grups[key]) {
-      grups[key] = {
+    // Agrupem per nom del lloc
+    if (!grups[lloc]) {
+      grups[lloc] = {
         lat,
         lon,
         lloc,
@@ -147,7 +146,7 @@ function dibuixarMapa() {
     }
 
     const estat = d.castell_result?.name || "Desconegut";
-    grups[key].estats[estat] = (grups[key].estats[estat] || 0) + 1;
+    grups[lloc].estats[estat] = (grups[lloc].estats[estat] || 0) + 1;
   });
 
   Object.values(grups).forEach(grup => {
@@ -166,3 +165,4 @@ function dibuixarMapa() {
       .bindPopup(popupHtml);
   });
 }
+
