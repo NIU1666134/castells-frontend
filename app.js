@@ -1,11 +1,11 @@
 let dadesCastells = [];
 let map;
 let coordenadesCache = {};
+let chartInstance;
 
-// Carregar dades des de l'API proxy (Node.js)
 async function carregarDades() {
   const loader = document.getElementById('loader');
-  loader.style.display = 'flex'; // mostrar loader i tapar la pàgina
+  loader.style.display = 'flex'; // mostrar loader
 
   console.log("Iniciant càrrega de dades...");
 
@@ -21,27 +21,19 @@ async function carregarDades() {
       console.warn("L'API no ha retornat un array vàlid.");
     }
 
-    // Construir cache de coordenades
     construirCoordenadesCache(dadesCastells);
-
-    // Omplir filtres gràfics i mapa
     omplirFiltres();
     omplirFiltresMapa();
-
-    // Dibuixar gràfics i mapa
     dibuixarGrafics();
-    if (!map) {
-      inicialitzarMapa();
-    } else {
-      dibuixarMapa();
-    }
+    if (!map) inicialitzarMapa(); else dibuixarMapa();
 
   } catch (err) {
     console.error("ERROR carregant dades API:", err);
   } finally {
-    loader.style.display = 'none'; // amagar loader quan tot ha acabat
+    loader.style.display = 'none'; // amagar loader
   }
 }
+
 
 
 
