@@ -28,11 +28,20 @@ function inicialitzarMapa() {
   markersLayer = L.markerClusterGroup();
   map.addLayer(markersLayer);
 
+  // Construir el cache de coordenades abans de dibuixar
+  if (dadesCastells && dadesCastells.length > 0) {
+    construirCoordenadesCache(dadesCastells);
+  }
+
+  // Omplir els filtres abans de dibuixar
+  omplirFiltresMapa();
+
+  // Dibuixar el mapa només un cop el cache està llest
   if (dadesCastells && dadesCastells.length > 0) {
     dibuixarMapa();
   }
 
-  // Assignar esdeveniments per filtres mapa
+  // Assignar esdeveniments dels filtres
   ['filterCollaMap', 'filterYearMap', 'filterTipusCastellMap', 'filterResultatMap'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -40,6 +49,7 @@ function inicialitzarMapa() {
     }
   });
 }
+
 
 
 // Obtenir coordenades (prioritzant dades, després cache, sinó genèric)
