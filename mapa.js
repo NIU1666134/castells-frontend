@@ -192,10 +192,10 @@ function dibuixarMapa() {
   const dadesFiltrades = filtrarDadesMapa();
 
   dadesFiltrades.forEach(d => {
-    const placa = d.show?.place ?? "Localització desconeguda";
-    const ciutat = d.city?.name ?? "";
+    const placaOriginal = d.show?.place ?? "Localització desconeguda";
+    const ciutatOriginal = d.city?.name ?? "";
   
-    const key = `${normalitzarNom(placa)},${normalitzarNom(ciutat)}`;
+    const key = `${normalitzarNom(placaOriginal)},${normalitzarNom(ciutatOriginal)}`;
     const coords = obtenirCoordenades(d);
     if (!coords) return;
   
@@ -203,8 +203,8 @@ function dibuixarMapa() {
       grups[key] = {
         lat: coords.lat,
         lon: coords.lon,
-        lloc: placa, // nom original per al popup
-        ciutat: ciutat,
+        lloc: capitalitzarNom(placaOriginal),
+        ciutat: capitalitzarNom(ciutatOriginal),
         estats: {}
       };
     }
