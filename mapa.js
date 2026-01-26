@@ -176,6 +176,7 @@ function filtrarDadesMapa() {
   });
 }
 
+// Dibuixar mapa
 function dibuixarMapa() {
   if (!markersLayer) return;
   markersLayer.clearLayers();
@@ -184,35 +185,30 @@ function dibuixarMapa() {
   const dadesFiltrades = filtrarDadesMapa();
 
   dadesFiltrades.forEach(d => {
+    const llocOriginal = d.show?.place ?? d.city?.name ?? "Localització desconeguda";
+    const nomNormalitzat = normalitzarNom(llocOriginal);
+
     const coords = obtenirCoordenades(d);
-    if (!coords) return; // ⚠️ saltar si no hi ha coordenades
+    if (!coords) return; // saltar si no hi ha coordenades
 
-    const { lat, lon } = coords;
-    const lloc = d.show?.place ?? d.city?.name ?? "Localització desconeguda";
-
-    // Guardar al cache per altres actuacions (punt 2)
-    if (d.show?.latitude && d.show?.longitude) {
-      coordenadesCache[lloc] = { lat: d.show.latitude, lon: d.show.longitude };
-    }
-
-    // Agrupar per nom del lloc
-    if (!grups[lloc]) {
-      grups[lloc] = {
-        lat,
-        lon,
-        lloc,
+    // Agrupem per nom normalitzat
+    if (!grups[nomNormalitzat]) {
+      grups[nomNormalitzat] = {
+        lat: coords.lat,
+        lon: coords.lon,
+        lloc: llocOriginal, // podem mostrar el nom original en popup
         estats: {}
       };
     }
 
     const estat = d.castell_result?.name || "Desconegut";
-    grups[lloc].estats[estat] = (grups[lloc].estats[estat] || 0) + 1;
+    grups[nomNormalitzat].estats[estat] = (grups[nomNormalitzat].estats[estat] || 0) + 1;
   });
 
   Object.values(grups).forEach(grup => {
     const { lat, lon, lloc, estats } = grup;
 
-    let total = Object.values(estats).reduce((a, b) => a + b, 0);
+    const total = Object.values(estats).reduce((a, b) => a + b, 0);
 
     let popupHtml = `<b>${lloc}</b><br>Total castells: ${total}<br><ul>`;
     for (const [estat, count] of Object.entries(estats)) {
