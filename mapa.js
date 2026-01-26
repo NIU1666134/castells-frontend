@@ -96,7 +96,7 @@ function obtenirCoordenades(d) {
   }
 
   // Si no hi ha res
-  return { lat: 41.3851, lon: 2.1734 };;
+  return { lat: 42.0, lon: 1.75 };
 }
 
 
