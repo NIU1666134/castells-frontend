@@ -1,5 +1,13 @@
 let markersLayer;
 
+function normalitzarNom(nom) {
+  if (!nom) return "";
+  return nom
+    .trim()                   // treu espais a principi i final
+    .toLowerCase()            // tot a minúscules
+    .normalize("NFD")         // separa accents
+    .replace(/[\u0300-\u036f]/g, ""); // elimina diacrítics
+}
 // Construir cache de coordenades per lloc
 function construirCoordenadesCache(dades) {
   coordenadesCache = {};
