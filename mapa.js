@@ -51,20 +51,41 @@ function inicialitzarMapa() {
 }
 
 
+const coordenadesCiutats = {
+  "Barcelona": { lat: 41.3851, lon: 2.1734 },
+  "Tarragona": { lat: 41.1189, lon: 1.2445 },
+  "Girona": { lat: 41.9794, lon: 2.8214 },
+  "Lleida": { lat: 41.6176, lon: 0.6200 },
+  "Reus": { lat: 41.1561, lon: 1.1069 },
+  "Valls": { lat: 41.2873, lon: 1.2519 },
+  "Vilafranca del Penedès": { lat: 41.3467, lon: 1.6996 },
+  "Terrassa": { lat: 41.5632, lon: 2.0089 },
+  "Sabadell": { lat: 41.5486, lon: 2.1074 }
+};
 
 // Obtenir coordenades (prioritzant dades, després cache, sinó genèric)
 function obtenirCoordenades(d) {
+  // 1. Coordenades pròpies
   if (d.show?.latitude && d.show?.longitude) {
     return { lat: d.show.latitude, lon: d.show.longitude };
   }
 
+  // 2. Cache per plaça
   const lloc = d.show?.place ?? d.city?.name ?? null;
   if (lloc && coordenadesCache[lloc]) {
     return coordenadesCache[lloc];
   }
 
-  return { lat: 41.7, lon: 1.6 }; // Coord genèrica Catalunya
+  // 3. Coordenada genèrica per ciutat
+  const ciutat = d.city?.name ?? null;
+  if (ciutat && coordenadesCiutats[ciutat]) {
+    return coordenadesCiutats[ciutat];
+  }
+
+  // 4. Fallback final (Catalunya)
+  return { lat: 41.7, lon: 1.6 };
 }
+
 
 // Omplir filtres de la secció mapa amb valors únics de dades
 function omplirFiltresMapa() {
