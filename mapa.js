@@ -173,14 +173,21 @@ function dibuixarMapa() {
   markersLayer.clearLayers();
 
   const grups = {};
-
   const dadesFiltrades = filtrarDadesMapa();
 
   dadesFiltrades.forEach(d => {
-    const { lat, lon } = obtenirCoordenades(d);
+    const coords = obtenirCoordenades(d);
+    if (!coords) return; // ⚠️ saltar si no hi ha coordenades
+
+    const { lat, lon } = coords;
     const lloc = d.show?.place ?? d.city?.name ?? "Localització desconeguda";
 
-    // Agrupem per nom del lloc
+    // Guardar al cache per altres actuacions (punt 2)
+    if (d.show?.latitude && d.show?.longitude) {
+      coordenadesCache[lloc] = { lat: d.show.latitude, lon: d.show.longitude };
+    }
+
+    // Agrupar per nom del lloc
     if (!grups[lloc]) {
       grups[lloc] = {
         lat,
@@ -197,7 +204,7 @@ function dibuixarMapa() {
   Object.values(grups).forEach(grup => {
     const { lat, lon, lloc, estats } = grup;
 
-    const total = Object.values(estats).reduce((a, b) => a + b, 0);
+    let total = Object.values(estats).reduce((a, b) => a + b, 0);
 
     let popupHtml = `<b>${lloc}</b><br>Total castells: ${total}<br><ul>`;
     for (const [estat, count] of Object.entries(estats)) {
@@ -210,4 +217,5 @@ function dibuixarMapa() {
       .bindPopup(popupHtml);
   });
 }
+
 
