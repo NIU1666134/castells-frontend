@@ -68,8 +68,8 @@ const coordenadesPlaces = {
     "lon": 1.8691067
   },
   "Plaça de Sant Jaume, Barcelona": {
-    "lat": 41.4769419,
-    "lon": 1.9202288
+    "lat": 41.3825802,
+    "lon": 2.177073
   },
   "Plaça Major, Montmaneu": {
     "lat": 41.625392,
