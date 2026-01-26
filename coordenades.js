@@ -68,8 +68,8 @@ const coordenadesPlaces = {
     "lon": 1.8691067
   },
   "Plaça de Sant Jaume, Barcelona": {
-    "lat": 41.3826497,
-    "lon": 2.1769912
+    "lat": 41.4769419,
+    "lon": 1.9202288
   },
   "Plaça Major, Montmaneu": {
     "lat": 41.625392,
@@ -228,8 +228,8 @@ const coordenadesPlaces = {
     "lon": 2.1887191
   },
   "c/ del Rosselló, 515 Antiga Fàbrica Damm, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.409113,
+    "lon": 2.17817
   },
   "Plaça de Sant Andreu, Puigdàlber": {
     "lat": 42.1645912,
@@ -660,8 +660,8 @@ const coordenadesPlaces = {
     "lon": 2.165967
   },
   "Plaça de les Constel·lacions Campus Nord, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.38809,
+    "lon": 2.11311
   },
   "Cosmocaixa, Barcelona": {
     "lat": 41.4124532,
