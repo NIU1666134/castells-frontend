@@ -53,6 +53,7 @@ function inicialitzarMapa() {
 
 const coordenadesCiutats = {
   "Barcelona": { lat: 41.3851, lon: 2.1734 },
+  "Badalona": { lat: 41.4465, lon: 2.2453 },
   "Tarragona": { lat: 41.1189, lon: 1.2445 },
   "Girona": { lat: 41.9794, lon: 2.8214 },
   "Lleida": { lat: 41.6176, lon: 0.6200 },
@@ -62,32 +63,42 @@ const coordenadesCiutats = {
   "Terrassa": { lat: 41.5632, lon: 2.0089 },
   "Sabadell": { lat: 41.5486, lon: 2.1074 },
   "Cerdanyola del Vallès": { lat: 41.4913, lon: 2.1408 },
+  "Sant Cugat del Vallès": { lat: 41.4667, lon: 2.0833 },
+  "L’Hospitalet de Llobregat": { lat: 41.3667, lon: 2.1167 },
   "Mataró": { lat: 41.5381, lon: 2.4447 }
 };
 
-
-// Obtenir coordenades (prioritzant dades, després cache, sinó genèric)
 function obtenirCoordenades(d) {
-  // 1. Coordenades pròpies
+  const placa = d.show?.place ?? null;
+  const ciutat = d.city?.name ?? null;
+
+  // Si la mateixa actuació ja té coordenades
   if (d.show?.latitude && d.show?.longitude) {
     return { lat: d.show.latitude, lon: d.show.longitude };
   }
 
-  // 2. Cache per plaça
-  const lloc = d.show?.place ?? d.city?.name ?? null;
-  if (lloc && coordenadesCache[lloc]) {
-    return coordenadesCache[lloc];
+  // Mirar si en altres actuacions ja hi ha coordenades per la mateixa plaça
+  if (placa && coordenadesCache[placa]) {
+    return coordenadesCache[placa];
   }
 
-  // 3. Coordenada genèrica per ciutat
-  const ciutat = d.city?.name ?? null;
+  // Mirar coordenades explícites de coordenadesPlaces (plaça + ciutat)
+  if (placa && ciutat) {
+    const key = `${placa}, ${ciutat}`;
+    if (coordenadesPlaces && coordenadesPlaces[key]) {
+      return coordenadesPlaces[key];
+    }
+  }
+
+  // Coordenada genèrica segons ciutat
   if (ciutat && coordenadesCiutats[ciutat]) {
     return coordenadesCiutats[ciutat];
   }
 
-  // 4. Fallback final (Catalunya)
-  return { lat: 41.7, lon: 1.6 };
+  // Si no hi ha res, no posar coordenada
+  return null;
 }
+
 
 
 // Omplir filtres de la secció mapa amb valors únics de dades
