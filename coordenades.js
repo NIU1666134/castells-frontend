@@ -1124,8 +1124,8 @@ const coordenadesPlaces = {
     "lon": -0.2770653
   },
   "Pla de la Seu, Tarragona": {
-    "lat": 41.1185995,
-    "lon": 1.2579507
+    "lat": 41.1188,
+    "lon": 1.2578
   },
   "Plaça de l'Església, Figueres": {
     "lat": 42.2675291,
@@ -2680,8 +2680,8 @@ const coordenadesPlaces = {
     "lon": 0.2771182
   },
   "Plaça Universitat, Barcelona": {
-    "lat": 41.588898,
-    "lon": 2.57999
+    "lat": 41.3855048,
+    "lon": 2.1640917
   },
   "Plaça Peixateria, Vilanova i la Geltrú": {
     "lat": 41.2265787,
