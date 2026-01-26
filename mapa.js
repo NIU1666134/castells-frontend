@@ -12,17 +12,20 @@ function normalitzarNom(nom) {
 function construirCoordenadesCache(dades) {
   coordenadesCache = {};
   dades.forEach(d => {
-    const lloc = d.show?.place ?? d.city?.name ?? null;
+    const placa = d.show?.place ?? null;
+    const ciutat = d.city?.name ?? null;
     const lat = d.show?.latitude;
     const lon = d.show?.longitude;
 
-    if (lloc && lat && lon) {
-      if (!coordenadesCache[lloc]) {
-        coordenadesCache[lloc] = { lat, lon };
+    if (placa && ciutat && lat && lon) {
+      const key = `${normalitzarNom(placa)},${normalitzarNom(ciutat)}`;
+      if (!coordenadesCache[key]) {
+        coordenadesCache[key] = { lat, lon };
       }
     }
   });
 }
+
 
 function inicialitzarMapa() {
   if (map) return; // si el mapa ja existeix, no fer res
@@ -80,17 +83,20 @@ function obtenirCoordenades(d) {
   const placa = d.show?.place ?? null;
   const ciutat = d.city?.name ?? null;
 
-  // Si la mateixa actuació ja té coordenades
+  // Si l’actuació ja té coordenades
   if (d.show?.latitude && d.show?.longitude) {
     return { lat: d.show.latitude, lon: d.show.longitude };
   }
 
-  // Mirar si en altres actuacions ja hi ha coordenades per la mateixa plaça
-  if (placa && coordenadesCache[placa]) {
-    return coordenadesCache[placa];
+  // Mirar cache amb placa + ciutat
+  if (placa && ciutat) {
+    const key = `${normalitzarNom(placa)},${normalitzarNom(ciutat)}`;
+    if (coordenadesCache[key]) {
+      return coordenadesCache[key];
+    }
   }
 
-  // Mirar coordenades explícites de coordenadesPlaces (plaça + ciutat)
+  // Mirar coordenades explícites de coordenadesPlaces
   if (placa && ciutat) {
     const key = `${placa}, ${ciutat}`;
     if (coordenadesPlaces && coordenadesPlaces[key]) {
@@ -103,9 +109,10 @@ function obtenirCoordenades(d) {
     return coordenadesCiutats[ciutat];
   }
 
-  // Si no hi ha res
+  // Últim recurs: mig Catalunya
   return { lat: 42.0, lon: 1.75 };
 }
+
 
 
 
