@@ -1124,8 +1124,8 @@ const coordenadesPlaces = {
     "lon": -0.2770653
   },
   "Pla de la Seu, Tarragona": {
-    "lat": 41.1188,
-    "lon": 1.2578
+    "lat": 41.11867,
+    "lon": 1.25775
   },
   "Plaça de l'Església, Figueres": {
     "lat": 42.2675291,
