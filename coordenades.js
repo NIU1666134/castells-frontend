@@ -704,8 +704,8 @@ const coordenadesPlaces = {
     "lon": 2.4878353
   },
   "La Mola, Sant Llorenç del Munt": {
-    "lat": 43.207314,
-    "lon": 6.465301
+    "lat": 41.641327,
+    "lon": 2.017369
   },
   "Plaça de la Vila, Les Cabanyes": {
     "lat": 41.3463797,
