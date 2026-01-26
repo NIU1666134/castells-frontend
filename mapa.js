@@ -60,8 +60,11 @@ const coordenadesCiutats = {
   "Valls": { lat: 41.2873, lon: 1.2519 },
   "Vilafranca del Penedès": { lat: 41.3467, lon: 1.6996 },
   "Terrassa": { lat: 41.5632, lon: 2.0089 },
-  "Sabadell": { lat: 41.5486, lon: 2.1074 }
+  "Sabadell": { lat: 41.5486, lon: 2.1074 },
+  "Cerdanyola del Vallès": { lat: 41.4913, lon: 2.1408 },
+  "Mataró": { lat: 41.5381, lon: 2.4447 }
 };
+
 
 // Obtenir coordenades (prioritzant dades, després cache, sinó genèric)
 function obtenirCoordenades(d) {
