@@ -95,8 +95,8 @@ function obtenirCoordenades(d) {
     return coordenadesCiutats[ciutat];
   }
 
-  // Si no hi ha res, no posar coordenada
-  return null;
+  // Si no hi ha res
+  return { lat: 41.3851, lon: 2.1734 };;
 }
 
 
