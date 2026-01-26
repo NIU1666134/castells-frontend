@@ -3,28 +3,36 @@ let markersLayer;
 function normalitzarNom(nom) {
   if (!nom) return "";
   return nom
-    .trim()                   // treu espais a principi i final
-    .toLowerCase()            // tot a minúscules
-    .normalize("NFD")         // separa accents
-    .replace(/[\u0300-\u036f]/g, ""); // elimina diacrítics
+    .toLowerCase()
+    .normalize("NFD")                  // separa accents
+    .replace(/[\u0300-\u036f]/g, "")   // elimina accents
+    .replace(/\bplaça\b|\bplaca\b|\bpl\b\.?/g, "") // treu plaça / pl.
+    .replace(/\bdel\b|\bde\b|\bdels\b|\bles\b/g, "") // treu preposicions
+    .replace(/[^a-z0-9 ]/g, "")        // fora símbols
+    .replace(/\s+/g, " ")              // espais duplicats
+    .trim();
 }
+
 // Construir cache de coordenades per lloc
 function construirCoordenadesCache(dades) {
   coordenadesCache = {};
+
   dades.forEach(d => {
     const placa = d.show?.place ?? null;
     const ciutat = d.city?.name ?? null;
     const lat = d.show?.latitude;
     const lon = d.show?.longitude;
 
-    if (placa && ciutat && lat && lon) {
-      const key = `${normalitzarNom(placa)},${normalitzarNom(ciutat)}`;
-      if (!coordenadesCache[key]) {
-        coordenadesCache[key] = { lat, lon };
-      }
+    if (!placa || !ciutat || !lat || !lon) return;
+
+    const key = `${normalitzarNom(placa)}|${normalitzarNom(ciutat)}`;
+
+    if (!coordenadesCache[key]) {
+      coordenadesCache[key] = { lat, lon };
     }
   });
 }
+
 
 
 function inicialitzarMapa() {
@@ -83,35 +91,36 @@ function obtenirCoordenades(d) {
   const placa = d.show?.place ?? null;
   const ciutat = d.city?.name ?? null;
 
-  // Si l’actuació ja té coordenades
+  // Aquesta actuació ja té coordenades
   if (d.show?.latitude && d.show?.longitude) {
     return { lat: d.show.latitude, lon: d.show.longitude };
   }
 
-  // Mirar cache amb placa + ciutat
+  // Clau normalitzada plaça + ciutat
   if (placa && ciutat) {
-    const key = `${normalitzarNom(placa)},${normalitzarNom(ciutat)}`;
+    const key = `${normalitzarNom(placa)}|${normalitzarNom(ciutat)}`;
+
+    // Altres actuacions amb la mateixa plaça i ciutat
     if (coordenadesCache[key]) {
       return coordenadesCache[key];
     }
-  }
 
-  // Mirar coordenades explícites de coordenadesPlaces
-  if (placa && ciutat) {
-    const key = `${placa}, ${ciutat}`;
-    if (coordenadesPlaces && coordenadesPlaces[key]) {
-      return coordenadesPlaces[key];
+    // Coordenades explícites (fitxer coordenades.js)
+    const originalKey = `${placa}, ${ciutat}`;
+    if (coordenadesPlaces && coordenadesPlaces[originalKey]) {
+      return coordenadesPlaces[originalKey];
     }
   }
 
-  // Coordenada genèrica segons ciutat
+  // Coordenada genèrica per ciutat
   if (ciutat && coordenadesCiutats[ciutat]) {
     return coordenadesCiutats[ciutat];
   }
 
-  // Últim recurs: mig Catalunya
-  return { lat: 42.0, lon: 1.75 };
+  // Últim recurs (centre de Catalunya, no BCN)
+  return { lat: 41.8, lon: 1.7 };
 }
+
 
 
 
@@ -192,33 +201,40 @@ function dibuixarMapa() {
   const dadesFiltrades = filtrarDadesMapa();
 
   dadesFiltrades.forEach(d => {
-    const placaOriginal = d.show?.place ?? "Localització desconeguda";
-    const ciutatOriginal = d.city?.name ?? "";
-  
-    const key = `${normalitzarNom(placaOriginal)},${normalitzarNom(ciutatOriginal)}`;
+    const placa = d.show?.place ?? "Localització desconeguda";
+    const ciutat = d.city?.name ?? "Ciutat desconeguda";
+
+    const key = `${normalitzarNom(placa)}|${normalitzarNom(ciutat)}`;
+
     const coords = obtenirCoordenades(d);
     if (!coords) return;
-  
+
     if (!grups[key]) {
       grups[key] = {
         lat: coords.lat,
         lon: coords.lon,
-        lloc: capitalitzarNom(placaOriginal),
-        ciutat: capitalitzarNom(ciutatOriginal),
+        placa,
+        ciutat,
         estats: {}
       };
     }
-  
+
     const estat = d.castell_result?.name || "Desconegut";
     grups[key].estats[estat] = (grups[key].estats[estat] || 0) + 1;
   });
 
   Object.values(grups).forEach(grup => {
-    const { lat, lon, lloc, estats } = grup;
+    const { lat, lon, placa, ciutat, estats } = grup;
 
     const total = Object.values(estats).reduce((a, b) => a + b, 0);
 
-    let popupHtml = `<b>${lloc}</b><br>Total castells: ${total}<br><ul>`;
+    let popupHtml = `
+      <b>${placa}</b><br>
+      <i>${ciutat}</i><br>
+      Total castells: ${total}<br>
+      <ul>
+    `;
+
     for (const [estat, count] of Object.entries(estats)) {
       popupHtml += `<li>${estat}: ${count}</li>`;
     }
