@@ -192,24 +192,25 @@ function dibuixarMapa() {
   const dadesFiltrades = filtrarDadesMapa();
 
   dadesFiltrades.forEach(d => {
-    const llocOriginal = d.show?.place ?? d.city?.name ?? "Localització desconeguda";
-    const nomNormalitzat = normalitzarNom(llocOriginal);
-
+    const placa = d.show?.place ?? "Localització desconeguda";
+    const ciutat = d.city?.name ?? "";
+  
+    const key = `${normalitzarNom(placa)},${normalitzarNom(ciutat)}`;
     const coords = obtenirCoordenades(d);
-    if (!coords) return; // saltar si no hi ha coordenades
-
-    // Agrupem per nom normalitzat
-    if (!grups[nomNormalitzat]) {
-      grups[nomNormalitzat] = {
+    if (!coords) return;
+  
+    if (!grups[key]) {
+      grups[key] = {
         lat: coords.lat,
         lon: coords.lon,
-        lloc: llocOriginal, // podem mostrar el nom original en popup
+        lloc: placa, // nom original per al popup
+        ciutat: ciutat,
         estats: {}
       };
     }
-
+  
     const estat = d.castell_result?.name || "Desconegut";
-    grups[nomNormalitzat].estats[estat] = (grups[nomNormalitzat].estats[estat] || 0) + 1;
+    grups[key].estats[estat] = (grups[key].estats[estat] || 0) + 1;
   });
 
   Object.values(grups).forEach(grup => {
