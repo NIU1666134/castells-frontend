@@ -324,8 +324,8 @@ const coordenadesPlaces = {
     "lon": 2.0219569
   },
   "Carrer Sant Jordi amb carrer Càceres, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.37507,
+    "lon": 2.133697
   },
   "Conjunt Monumental, Sant Martí Sarroca": {
     "lat": 41.3041267,
@@ -688,8 +688,8 @@ const coordenadesPlaces = {
     "lon": 1.5395321
   },
   "Avinguda Roma amb Comte Borrell, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.384827,
+    "lon": 2.1527902
   },
   "Mare de Déu dels Àngels, 23, Terrassa": {
     "lat": 41.5660503,
@@ -852,8 +852,8 @@ const coordenadesPlaces = {
     "lon": 2.4230925
   },
   "c/ Consel de Cent entre Girona i Bailèn, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.39549,
+    "lon": 2.171516
   },
   "Plaça de Sa Bassa, Manacor": {
     "lat": 39.5695629,
@@ -888,8 +888,8 @@ const coordenadesPlaces = {
     "lon": 1.9178156
   },
   "Plaça dels Somnis del Parc d'atraccions Tibidabo, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.421705,
+    "lon": 2.120086
   },
   "Plaça de Sant Pere, Berga": {
     "lat": 42.1043337,
@@ -1076,8 +1076,8 @@ const coordenadesPlaces = {
     "lon": 1.7745202
   },
   "La Model (c/ Provença - c/ Entença), Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.38293,
+    "lon": 2.144784
   },
   "c/ Duc Tetuan, 2-3, Montcada i Reixac": {
     "lat": 41.485879,
@@ -1176,8 +1176,8 @@ const coordenadesPlaces = {
     "lon": 1.7843967
   },
   "c/ d'en Grassot cantonada Indústria, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.40396,
+    "lon": 2.16695
   },
   "Plaça de les Remendadores, Cambrils": {
     "lat": 41.0660918,
@@ -1500,8 +1500,8 @@ const coordenadesPlaces = {
     "lon": 1.0657579
   },
   "Edifici Històric UB, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.38652,
+    "lon": 2.163707
   },
   "Campanar de Valls, Valls": {
     "lat": 41.2839356,
@@ -1556,8 +1556,8 @@ const coordenadesPlaces = {
     "lon": 2.8646225
   },
   "Plaça del funi de Vallvidrera, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.41451,
+    "lon": 2.105291
   },
   "Plaça de la Vinya, Cabrianes": {
     "lat": 41.6778068,
@@ -1648,8 +1648,8 @@ const coordenadesPlaces = {
     "lon": 2.1619718
   },
   "Consell de Cent-Borrell, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.3831396,
+    "lon": 2.155084
   },
   "Plaça Consell de la Vila, Barcelona": {
     "lat": 41.3990086,
@@ -1736,8 +1736,8 @@ const coordenadesPlaces = {
     "lon": 1.5332103
   },
   "Carrer Marina, 253 (davant de la Sagrada Família), Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.404040,
+    "lon": 2.174945
   },
   "Avinguda Via Augusta, L'Arboç": {
     "lat": 41.5240646,
@@ -1864,8 +1864,8 @@ const coordenadesPlaces = {
     "lon": 2.0218288
   },
   "Davant la seu del districte de l'Esquerra de l'Eixample, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.395133,
+    "lon": 2.168622
   },
   "Carrer Sant Adrià, 20, Barcelona": {
     "lat": 41.4326073,
@@ -2124,12 +2124,12 @@ const coordenadesPlaces = {
     "lon": -0.2844308
   },
   "\"Plaça del 4d8\" Campus Nord, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.388463,
+    "lon": 2.113377
   },
   "Cosmo Caixa, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.4124532,
+    "lon": 2.1316655
   },
   "Mare de Déu dels Àngels, 31, Terrassa": {
     "lat": 41.5660415,
@@ -2172,8 +2172,8 @@ const coordenadesPlaces = {
     "lon": 1.326255
   },
   "c/ Consell de Cent entre Girona i Bailèn, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.39549,
+    "lon": 2.171516
   },
   "Prat Gran, Andorra la Vella": {
     "lat": 43.3912338,
@@ -2584,8 +2584,8 @@ const coordenadesPlaces = {
     "lon": 2.1619718
   },
   "c/ del Compte d'Urgell, 217, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.39,
+    "lon": 2.147884
   },
   "Espai gatronòmic, Calldetenes": {
     "lat": 41.9257651,
@@ -2616,8 +2616,8 @@ const coordenadesPlaces = {
     "lon": 2.1636342
   },
   "Carrer Sardenya (davant de la Sagrada Família), Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.403152,
+    "lon": 2.173773
   },
   "Plaça de l'Església, Tordera": {
     "lat": 41.7015387,
@@ -2664,8 +2664,8 @@ const coordenadesPlaces = {
     "lon": 2.8953121
   },
   "Biblioteca Francesc Boix, c/ Blai, 34, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.373976,
+    "lon": 2.164053
   },
   "Plaça dels Sedassos, Tarragona": {
     "lat": 41.1172672,
