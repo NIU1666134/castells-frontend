@@ -392,8 +392,8 @@ const coordenadesPlaces = {
     "lon": 1.2550573
   },
   "Plaça de la Rotonda, Andorra la Vella": {
-    "lat": 43.3441581,
-    "lon": 5.3807096
+    "lat": 42.508586,
+    "lon": 1.529113
   },
   "Pineda, Palafolls i Tordera, Tordera": {
     "lat": 41.6977173,
@@ -2352,8 +2352,8 @@ const coordenadesPlaces = {
     "lon": 1.4024893
   },
   "Placeta de França, El Vendrell": {
-    "lat": 43.2847652,
-    "lon": 5.4457705
+    "lat": 41.21954,
+    "lon": 1.5330045
   },
   "Piscina del Fornàs, Valls": {
     "lat": 41.2949574,
