@@ -820,8 +820,8 @@ const coordenadesPlaces = {
     "lon": 2.0212767
   },
   "Plaça Gutenberg, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.4039350,
+    "lon": 2.1942314
   },
   "Pati de l'EPSEVG, Vilanova i la Geltrú": {
     "lat": 41.2241992,
@@ -1676,8 +1676,8 @@ const coordenadesPlaces = {
     "lon": 2.8702727
   },
   "Parc Nacional, Parc de Montjuïc, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.3664722,
+    "lon": 2.1567100
   },
   "c/ Mare de Déu dels Àngels, 21-31, Terrassa": {
     "lat": 41.5660415,
@@ -2204,8 +2204,8 @@ const coordenadesPlaces = {
     "lon": 2.2469731
   },
   "Àgora UPF Ciutadella, Barcelona": {
-    "lat": 41.3825802,
-    "lon": 2.177073
+    "lat": 41.389686,
+    "lon": 2.1907013
   },
   "Avinguda del Mil·lenari, Cambrils": {
     "lat": 41.0743952,
