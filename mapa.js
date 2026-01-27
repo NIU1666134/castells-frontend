@@ -204,10 +204,10 @@ function dibuixarMapa() {
     const placa = d.show?.place ?? "Localització desconeguda";
     const ciutat = d.city?.name ?? "Ciutat desconeguda";
 
-    const key = `${normalitzarNom(placa)}|${normalitzarNom(ciutat)}`;
-
     const coords = obtenirCoordenades(d);
-    if (!coords) return;
+    if (!coords || coords.lat == null || coords.lon == null) return;
+
+    const key = `${coords.lat.toFixed(5)}|${coords.lon.toFixed(5)}`;
 
     if (!grups[key]) {
       grups[key] = {
@@ -231,13 +231,14 @@ function dibuixarMapa() {
     let popupHtml = `
       <b>${placa}</b><br>
       <i>${ciutat}</i><br>
-      Total castells: ${total}<br>
+      <b>Total castells:</b> ${total}<br>
       <ul>
     `;
 
     for (const [estat, count] of Object.entries(estats)) {
       popupHtml += `<li>${estat}: ${count}</li>`;
     }
+
     popupHtml += `</ul>`;
 
     L.marker([lat, lon])
@@ -245,5 +246,3 @@ function dibuixarMapa() {
       .bindPopup(popupHtml);
   });
 }
-
-
