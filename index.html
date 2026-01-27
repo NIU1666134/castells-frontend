@@ -20,7 +20,7 @@
   <link href="styles.css" rel="stylesheet" />
 
   <style>
-    /* Loader overlay que tapa tota la pàgina */
+    /* Loader overlay */
     #loader {
       position: fixed;
       top: 0; left: 0;
@@ -33,14 +33,8 @@
       z-index: 9999;
       font-family: Arial, sans-serif;
     }
-    .spinner-border {
-      width: 3rem;
-      height: 3rem;
-    }
-    #loader-text {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
+    .spinner-border { width: 3rem; height: 3rem; }
+    #loader-text { margin-top: 1rem; font-size: 1.2rem; }
   </style>
 </head>
 
@@ -91,6 +85,14 @@
           <option value="colla">Per colla</option>
           <option value="tipusCastell">Per tipus de castell</option>
           <option value="resultat">Per resultat</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-2">
+        <label for="tipusChart" class="form-label">Tipus de gràfic</label>
+        <select id="tipusChart" class="form-select">
+          <option value="bar" selected>Barres apilades</option>
+          <option value="line">Línia</option>
+          <option value="doughnut">Pastís</option>
         </select>
       </div>
     </div>
