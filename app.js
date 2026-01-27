@@ -3,15 +3,22 @@ let map;
 let coordenadesCache = {};
 let chartInstance;
 
-// Carregar dades des de l'API proxy (Node.js)
+// Carregar dades des de l'API proxy
 async function carregarDades() {
   const loader = document.getElementById('loader');
   loader.style.display = 'flex'; // mostrar loader
-  loader.style.display = 'flex'; // mostrar loader i tapar la pàgina
 
   console.log("Iniciant càrrega de dades...");
 
-@@ -21,151 +21,159 @@
+  try {
+    const response = await fetch("https://castells-proxy.onrender.com/api/actuacions");
+    const data = await response.json();
+
+    if (Array.isArray(data.results)) {
+      dadesCastells = data.results;
+      console.log("Dades carregades correctament:", dadesCastells.length, "items");
+    } else {
+      dadesCastells = [];
       console.warn("L'API no ha retornat un array vàlid.");
     }
 
@@ -25,22 +32,13 @@ async function carregarDades() {
     // Dibuixar gràfics i mapa
     dibuixarGrafics();
     if (!map) inicialitzarMapa(); else dibuixarMapa();
-    if (!map) {
-      inicialitzarMapa();
-    } else {
-      dibuixarMapa();
-    }
 
   } catch (err) {
     console.error("ERROR carregant dades API:", err);
   } finally {
     loader.style.display = 'none'; // amagar loader
-    loader.style.display = 'none'; // amagar loader quan tot ha acabat
   }
 }
-
-
-
 
 // Omplir filtres de la secció de gràfics
 function omplirFiltres() {
@@ -89,7 +87,7 @@ function omplirFiltres() {
   });
 }
 
-// Filtrar dades segons selecció de filtres (ús genèric)
+// Filtrar dades segons selecció de filtres
 function filtrarDades(filters = {}) {
   return dadesCastells.filter(d => {
     const collaname = d.colla?.name || "Desconeguda";
@@ -104,7 +102,7 @@ function filtrarDades(filters = {}) {
   });
 }
 
-// Dibuixar gràfics a partir de les dades filtrades i tipus de visualització
+// Dibuixar gràfics
 function dibuixarGrafics() {
   const filters = {
     colla: document.getElementById('filterColla').value || null,
@@ -118,32 +116,19 @@ function dibuixarGrafics() {
 
   let counts = {};
 
-  if (tipusVisualitzacio === 'any') {
-    dadesFiltrades.forEach(d => {
-      const any = d.date ? new Date(d.date).getFullYear() : "Desconegut";
-      counts[any] = (counts[any] || 0) + 1;
-    });
-  } else if (tipusVisualitzacio === 'colla') {
-    dadesFiltrades.forEach(d => {
-      const collaname = d.colla?.name || "Desconeguda";
-      counts[collaname] = (counts[collaname] || 0) + 1;
-    });
-  } else if (tipusVisualitzacio === 'tipusCastell') {
-    dadesFiltrades.forEach(d => {
-      const tipus = d.castell_type?.name || "Desconegut";
-      counts[tipus] = (counts[tipus] || 0) + 1;
-    });
-  } else if (tipusVisualitzacio === 'resultat') {
-    dadesFiltrades.forEach(d => {
-      const res = d.castell_result?.name || "Desconegut";
-      counts[res] = (counts[res] || 0) + 1;
-    });
-  }
+  dadesFiltrades.forEach(d => {
+    let key;
+    if (tipusVisualitzacio === 'any') key = d.date ? new Date(d.date).getFullYear() : "Desconegut";
+    else if (tipusVisualitzacio === 'colla') key = d.colla?.name || "Desconeguda";
+    else if (tipusVisualitzacio === 'tipusCastell') key = d.castell_type?.name || "Desconegut";
+    else if (tipusVisualitzacio === 'resultat') key = d.castell_result?.name || "Desconegut";
+    counts[key] = (counts[key] || 0) + 1;
+  });
 
   const ctx = document.getElementById('chartCastells').getContext('2d');
-  if (window.chartInstance) window.chartInstance.destroy();
+  if (chartInstance) chartInstance.destroy();
 
-  window.chartInstance = new Chart(ctx, {
+  chartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: Object.keys(counts),
@@ -158,19 +143,18 @@ function dibuixarGrafics() {
       scales: {
         y: {
           beginAtZero: true,
-          ticks: {
-            precision: 0
-          }
+          ticks: { precision: 0 }
         }
       }
     }
   });
 }
 
-// Actualitzar gràfic quan canviïn els filtres
+// Detectar canvis en filtres
 ['filterColla', 'filterYear', 'filterTipusCastell', 'filterResultat', 'filterVisualitzacio'].forEach(id => {
   document.getElementById(id).addEventListener('change', dibuixarGrafics);
 });
 
-// Executar càrrega de dades quan la pàgina està llesta
+// Carregar dades quan la pàgina està llesta
 window.addEventListener('load', carregarDades);
+
