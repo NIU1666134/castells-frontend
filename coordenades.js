@@ -52,8 +52,8 @@ const coordenadesPlaces = {
     "lon": 1.2503773
   },
   "Església de Sant Vicenç, Barcelona": {
-    "lat": 41.5393214,
-    "lon": 2.2134405
+    "lat": 41.3996217,
+    "lon": 2.1210724
   },
   "Plaça del Consell de la Vila, Barcelona": {
     "lat": 41.3992219,
@@ -240,8 +240,8 @@ const coordenadesPlaces = {
     "lon": 3.1075325
   },
   "Plaça de la Rectoria, Manacor": {
-    "lat": 42.4020042,
-    "lon": 0.9871487
+    "lat": 39.5685588,
+    "lon": 3.2103162
   },
   "c/ Colom cantonada amb Albinyana, Terrassa": {
     "lat": 41.5629623,
@@ -2520,8 +2520,8 @@ const coordenadesPlaces = {
     "lon": 2.7492759
   },
   "Plaça de Pep Ventura, Barcelona": {
-    "lat": 41.6139172,
-    "lon": 2.5403672
+    "lat": 41.4142217,
+    "lon": 2.1053141
   },
   "Legazpi, Legazpi (Guipúscoa)": {
     "lat": 43.0510088,
