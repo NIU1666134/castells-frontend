@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Visualització de Castells</title>
+  <title>Castells Dashboard</title>
 
   <!-- BOOTSTRAP CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -33,8 +33,24 @@
       z-index: 9999;
       font-family: Arial, sans-serif;
     }
-    .spinner-border { width: 3rem; height: 3rem; }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
     #loader-text { margin-top: 1rem; font-size: 1.2rem; }
+
+    /* Seccions */
+    .section-title { font-weight: 700; margin-bottom: 2rem; }
+    #seccioGrafics, #seccioMapa { padding: 1rem 0; }
+
+    /* Dropdowns més petits i compactes */
+    .form-select-sm { font-size: 0.85rem; padding: 0.25rem 0.5rem; }
+
+    /* Canvas gràfic */
+    #chartCastells { background: #f9f9f9; border-radius: 0.5rem; padding: 1rem; }
+
+    /* Map */
+    #map { height: 500px; border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
   </style>
 </head>
 
@@ -50,47 +66,45 @@
 
   <!-- MENÚ SUPERIOR -->
   <div class="container my-4 text-center">
-    <button class="btn-top btn-top-grafics me-2" onclick="mostrarGrafics()">Gràfics</button>
-    <button class="btn-top btn-top-mapa" onclick="mostrarMapa()">Mapa</button>
+    <button class="btn btn-primary me-2" onclick="mostrarGrafics()">Gràfics</button>
+    <button class="btn btn-outline-primary" onclick="mostrarMapa()">Mapa</button>
   </div>
 
   <!-- SECCIÓ GRÀFICS -->
   <div id="seccioGrafics" class="container my-5">
-    <h1 class="section-title mb-4 text-center">Visualització de Castells</h1>
+    <h1 class="section-title text-center">Visualització de Castells</h1>
 
-    <div class="row mb-4">
-      <div class="col-md-3 mb-2">
+    <!-- FILTRES COMPACTES -->
+    <div class="row mb-4 g-2 align-items-end">
+      <div class="col-auto">
         <label for="filterColla" class="form-label">Colla</label>
-        <select id="filterColla" class="form-select"><option value="">Totes</option></select>
+        <select id="filterColla" class="form-select form-select-sm"><option value="">Totes</option></select>
       </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-auto">
         <label for="filterYear" class="form-label">Any</label>
-        <select id="filterYear" class="form-select"><option value="">Tots</option></select>
+        <select id="filterYear" class="form-select form-select-sm"><option value="">Tots</option></select>
       </div>
-      <div class="col-md-3 mb-2">
-        <label for="filterTipusCastell" class="form-label">Tipus de Castell</label>
-        <select id="filterTipusCastell" class="form-select"><option value="">Tots</option></select>
+      <div class="col-auto">
+        <label for="filterTipusCastell" class="form-label">Tipus</label>
+        <select id="filterTipusCastell" class="form-select form-select-sm"><option value="">Tots</option></select>
       </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-auto">
         <label for="filterResultat" class="form-label">Resultat</label>
-        <select id="filterResultat" class="form-select"><option value="">Tots</option></select>
+        <select id="filterResultat" class="form-select form-select-sm"><option value="">Tots</option></select>
       </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-3 mb-2">
+      <div class="col-auto">
         <label for="filterVisualitzacio" class="form-label">Visualització</label>
-        <select id="filterVisualitzacio" class="form-select">
-          <option value="any">Per any</option>
-          <option value="colla">Per colla</option>
-          <option value="tipusCastell">Per tipus de castell</option>
-          <option value="resultat">Per resultat</option>
+        <select id="filterVisualitzacio" class="form-select form-select-sm">
+          <option value="any">Any</option>
+          <option value="colla">Colla</option>
+          <option value="tipusCastell">Tipus</option>
+          <option value="resultat">Resultat</option>
         </select>
       </div>
-      <div class="col-md-3 mb-2">
-        <label for="tipusChart" class="form-label">Tipus de gràfic</label>
-        <select id="tipusChart" class="form-select">
-          <option value="bar" selected>Barres apilades</option>
+      <div class="col-auto">
+        <label for="tipusChart" class="form-label">Gràfic</label>
+        <select id="tipusChart" class="form-select form-select-sm">
+          <option value="bar" selected>Barres</option>
           <option value="line">Línia</option>
           <option value="doughnut">Pastís</option>
         </select>
@@ -102,28 +116,28 @@
 
   <!-- SECCIÓ MAPA -->
   <div id="seccioMapa" class="container my-5" style="display:none">
-    <h1 class="section-title mb-4 text-center">Mapa de Places Castelleres</h1>
+    <h1 class="section-title text-center">Mapa de Places Castelleres</h1>
 
-    <div class="row mb-4">
-      <div class="col-md-3 mb-2">
+    <div class="row mb-4 g-2 align-items-end">
+      <div class="col-auto">
         <label for="filterCollaMap" class="form-label">Colla</label>
-        <select id="filterCollaMap" class="form-select"><option value="">Totes</option></select>
+        <select id="filterCollaMap" class="form-select form-select-sm"><option value="">Totes</option></select>
       </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-auto">
         <label for="filterYearMap" class="form-label">Any</label>
-        <select id="filterYearMap" class="form-select"><option value="">Tots</option></select>
+        <select id="filterYearMap" class="form-select form-select-sm"><option value="">Tots</option></select>
       </div>
-      <div class="col-md-3 mb-2">
-        <label for="filterTipusCastellMap" class="form-label">Tipus de Castell</label>
-        <select id="filterTipusCastellMap" class="form-select"><option value="">Tots</option></select>
+      <div class="col-auto">
+        <label for="filterTipusCastellMap" class="form-label">Tipus</label>
+        <select id="filterTipusCastellMap" class="form-select form-select-sm"><option value="">Tots</option></select>
       </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-auto">
         <label for="filterResultatMap" class="form-label">Resultat</label>
-        <select id="filterResultatMap" class="form-select"><option value="">Tots</option></select>
+        <select id="filterResultatMap" class="form-select form-select-sm"><option value="">Tots</option></select>
       </div>
     </div>
 
-    <div id="map" style="height:500px;"></div>
+    <div id="map"></div>
   </div>
 
   <!-- LLIBRERIES -->
@@ -132,7 +146,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- SCRIPTS PROPIS -->
+  <!-- SCRIPTS -->
   <script src="app.js"></script>
   <script src="coordenades.js"></script>
   <script src="mapa.js"></script>
@@ -158,6 +172,7 @@
   </script>
 </body>
 </html>
+
 
 
 
