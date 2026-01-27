@@ -232,8 +232,8 @@ const coordenadesPlaces = {
     "lon": 2.17817
   },
   "Plaça de Sant Andreu, Puigdàlber": {
-    "lat": 42.1645912,
-    "lon": 3.0088856
+    "lat": 41.4054252,
+    "lon": 1.7002127
   },
   "Plaça de Sant Martí, Fontantilles": {
     "lat": 42.0099123,
@@ -292,8 +292,8 @@ const coordenadesPlaces = {
     "lon": 1.6966313
   },
   "Plaça Sant Domènech, Manresa": {
-    "lat": 42.3077061,
-    "lon": 3.0083461
+    "lat": 41.7251397,
+    "lon": 1.8341821
   },
   "Espace Yvan Casenove, Montner": {
     "lat": 42.7493975,
@@ -408,8 +408,8 @@ const coordenadesPlaces = {
     "lon": 2.1581461
   },
   "Plaça dels Rabassaires, Sant Cugat del Vallès": {
-    "lat": 41.4728432,
-    "lon": 2.0817809
+    "lat": 41.4840196,
+    "lon": 2.0658132
   },
   "Plaça Penedès, Vilafranca del Penedès": {
     "lat": 41.3443214,
@@ -460,8 +460,8 @@ const coordenadesPlaces = {
     "lon": 2.0446381
   },
   "Plaça Major, Guissona": {
-    "lat": 41.8108961,
-    "lon": 1.274712
+    "lat": 41.7852111,
+    "lon": 1.2887511
   },
   "Plaça dels Països Catalans, Sant Joan de Mediona": {
     "lat": 41.4773014,
@@ -564,12 +564,12 @@ const coordenadesPlaces = {
     "lon": 0.8946743
   },
   "Plaça de l'Església, Tremp": {
-    "lat": 42.1315345,
-    "lon": 0.8912494
+    "lat": 42.1678736,
+    "lon": 0.8947983
   },
   "Plaça El Mirador, Castellar del Vallès": {
-    "lat": 41.4205433,
-    "lon": 1.9393424
+    "lat": 41.6163224,
+    "lon": 2.0872357
   },
   "Plaça Constitució, Vilafranca del Penedès": {
     "lat": 41.347343,
@@ -612,8 +612,8 @@ const coordenadesPlaces = {
     "lon": 1.642336
   },
   "Plaça de l'Ajuntament, Santa Margarida de Montbui": {
-    "lat": 41.5746991,
-    "lon": 1.6084654
+    "lat": 41.5568046,
+    "lon": 1.6030819
   },
   "Carrer de Blesa, 36, Barcelona": {
     "lat": 41.3727493,
@@ -676,16 +676,16 @@ const coordenadesPlaces = {
     "lon": 2.005884
   },
   "Plaça 1 d'octubre, Sant Cugat del Vallès": {
-    "lat": 41.3375288,
-    "lon": 1.9928604
+    "lat": 41.4733451,
+    "lon": 2.0859513
   },
   "Plaça Major, Llívia": {
     "lat": 42.464503,
     "lon": 1.9808167
   },
   "Plaça Coprínceps, Escaldes-Engordany": {
-    "lat": 42.5089488,
-    "lon": 1.5395321
+    "lat": 42.5086053,
+    "lon": 1.5396047
   },
   "Avinguda Roma amb Comte Borrell, Barcelona": {
     "lat": 41.384827,
@@ -1000,8 +1000,8 @@ const coordenadesPlaces = {
     "lon": 1.8931874
   },
   "Plaça Sant Jaume, Barcelona": {
-    "lat": 41.4769419,
-    "lon": 1.9202289
+    "lat": 41.3825802,
+    "lon": 2.177073
   },
   "Carrer Major, L'Arboç": {
     "lat": 41.2673281,
@@ -1012,8 +1012,8 @@ const coordenadesPlaces = {
     "lon": 1.2587564
   },
   "Plaça de l'Estudi, Vila-seca": {
-    "lat": 42.0618478,
-    "lon": 1.2955934
+    "lat": 41.1117191,
+    "lon": 1.1460794
   },
   "Plaça Major, Algemesí": {
     "lat": 39.1889018,
@@ -1432,8 +1432,8 @@ const coordenadesPlaces = {
     "lon": 1.3954155
   },
   "Plaça de l'Església, Agramunt": {
-    "lat": 41.8084538,
-    "lon": 1.0795678
+    "lat": 41.787096,
+    "lon": 1.0988149
   },
   "Plaça Faura, Artés": {
     "lat": 41.7990217,
@@ -1485,15 +1485,15 @@ const coordenadesPlaces = {
   },
   "Església de Sant Antoni, Vilanova i la Geltrú": {
     "lat": 41.2268838,
-    "lon": 2.7235610
+    "lon": 1.7235610
   },
   "Basílica de Montserrat, Monestir de Montserrat": {
     "lat": 41.5933945,
     "lon": 1.8380058
   },
   "Santuari de la Serra i Plaça Major, Montblanc": {
-    "lat": 43.3958648,
-    "lon": 3.3672892
+    "lat": 41.3783996,
+    "lon": 1.157229
   },
   ", Cambrils": {
     "lat": 41.0679423,
@@ -1812,8 +1812,8 @@ const coordenadesPlaces = {
     "lon": 2.0706224
   },
   "Plaça de Santa Maria, Mataró": {
-    "lat": 41.6391275,
-    "lon": 2.400293
+    "lat": 41.5408759,
+    "lon": 2.4464931
   },
   "Plaça 1 d'octubre, Sant Martí de Tous": {
     "lat": 41.3375288,
@@ -1948,8 +1948,8 @@ const coordenadesPlaces = {
     "lon": 2.0219569
   },
   "Plaça de l'Acadèmia, Cerdanyola del Vallès": {
-    "lat": 41.3875747,
-    "lon": 2.1808886
+    "lat": 41.5036523,
+    "lon": 2.1012104
   },
   "Parc Nou, El Prat de Llobregat": {
     "lat": 41.3167071,
@@ -2236,8 +2236,8 @@ const coordenadesPlaces = {
     "lon": 2.1761895
   },
   "Plana Barcelona, Calaf": {
-    "lat": 41.8024516,
-    "lon": 2.1034896
+    "lat": 41.7324833,
+    "lon": 1.5136996
   },
   "c/ Doctor Robert, La Bisbal del Penedès": {
     "lat": 41.2798811,
@@ -2316,8 +2316,8 @@ const coordenadesPlaces = {
     "lon": 1.1274925
   },
   "Plaça de Sant Magí, Tarragona": {
-    "lat": 41.2389881,
-    "lon": 1.5377631
+    "lat": 41.1097090,
+    "lon": 1.2407497
   },
   "Plaza Mayor, Madrid": {
     "lat": 40.4153949,
@@ -2376,8 +2376,8 @@ const coordenadesPlaces = {
     "lon": 1.1319896
   },
   "Llotgeta del Monestir, Sant Cugat del Vallès": {
-    "lat": 41.4728432,
-    "lon": 2.0817809
+    "lat": 41.4735822,
+    "lon": 2.0848522
   },
   "Plaça de la Vila, Sant Vicenç dels Horts": {
     "lat": 41.3932522,
@@ -2420,8 +2420,8 @@ const coordenadesPlaces = {
     "lon": 1.6981536
   },
   "Plaça Ajuntament, País Basc": {
-    "lat": 41.3299262,
-    "lon": 1.9245749
+    "lat": 42.8469133,
+    "lon": -2.6721058
   },
   "Espanya Industrial, Barcelona": {
     "lat": 41.4268393,
