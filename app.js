@@ -109,6 +109,7 @@ function filtrarDades(filters = {}) {
 
 // Dibuixar gràfics a partir de les dades filtrades i tipus de visualització
 function dibuixarGrafics() {
+  // Recollir filtres
   const filters = {
     colla: document.getElementById('filterColla').value || null,
     any: document.getElementById('filterYear').value || null,
@@ -116,64 +117,90 @@ function dibuixarGrafics() {
     resultat: document.getElementById('filterResultat').value || null
   };
 
-  const dadesFiltrades = filtrarDades(filters);
   const tipusVisualitzacio = document.getElementById('filterVisualitzacio').value;
+  const tipusChart = document.getElementById('tipusChart').value || 'bar';
 
-  let counts = {};
+  const dadesFiltrades = filtrarDades(filters);
 
-  if (tipusVisualitzacio === 'any') {
-    dadesFiltrades.forEach(d => {
-      const any = d.date ? new Date(d.date).getFullYear() : "Desconegut";
-      counts[any] = (counts[any] || 0) + 1;
-    });
-  } else if (tipusVisualitzacio === 'colla') {
-    dadesFiltrades.forEach(d => {
-      const collaname = d.colla?.name || "Desconeguda";
-      counts[collaname] = (counts[collaname] || 0) + 1;
-    });
-  } else if (tipusVisualitzacio === 'tipusCastell') {
-    dadesFiltrades.forEach(d => {
-      const tipus = d.castell_type?.name || "Desconegut";
-      counts[tipus] = (counts[tipus] || 0) + 1;
-    });
-  } else if (tipusVisualitzacio === 'resultat') {
-    dadesFiltrades.forEach(d => {
-      const res = d.castell_result?.name || "Desconegut";
-      counts[res] = (counts[res] || 0) + 1;
-    });
-  }
+  // Obtenir categories principals i subcategories (per apilar)
+  let categories = [];
+  let subcategories = [];
+  let conteig = {};
 
+  dadesFiltrades.forEach(d => {
+    const any = d.date ? new Date(d.date).getFullYear() : "Desconegut";
+    const collaname = d.colla?.name || "Desconeguda";
+    const tipus = d.castell_type?.name || "Desconegut";
+    const resultat = d.castell_result?.name || "Desconegut";
+
+    let cat, subcat;
+    switch (tipusVisualitzacio) {
+      case 'any': cat = any; subcat = resultat; break;
+      case 'colla': cat = collaname; subcat = resultat; break;
+      case 'tipusCastell': cat = tipus; subcat = resultat; break;
+      case 'resultat': cat = resultat; subcat = tipus; break;
+      default: cat = any; subcat = resultat;
+    }
+
+    categories.push(cat);
+    subcategories.push(subcat);
+
+    if (!conteig[cat]) conteig[cat] = {};
+    conteig[cat][subcat] = (conteig[cat][subcat] || 0) + 1;
+  });
+
+  categories = [...new Set(categories)].sort();
+  subcategories = [...new Set(subcategories)].sort();
+
+  // Construir datasets
+  const datasets = subcategories.map((sub, i) => ({
+    label: sub,
+    data: categories.map(cat => (conteig[cat] && conteig[cat][sub]) ? conteig[cat][sub] : 0),
+    backgroundColor: `hsl(${i*60}, 70%, 50%)`,
+    borderColor: `hsl(${i*60}, 70%, 30%)`,
+    borderWidth: 1,
+    fill: tipusChart === 'line' ? false : true,
+  }));
+
+  // Crear o destruir gràfic existent
   const ctx = document.getElementById('chartCastells').getContext('2d');
   if (window.chartInstance) window.chartInstance.destroy();
 
   window.chartInstance = new Chart(ctx, {
-    type: 'bar',
+    type: tipusChart,
     data: {
-      labels: Object.keys(counts),
-      datasets: [{
-        label: 'Nombre de castells',
-        data: Object.values(counts),
-        backgroundColor: 'rgba(54, 162, 235, 0.6)'
-      }]
+      labels: categories,
+      datasets: datasets
     },
     options: {
       responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            precision: 0
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const total = context.dataset.data.reduce((a,b)=>a+b,0);
+              const percent = total ? ((context.parsed.y / total) * 100).toFixed(1) : context.parsed.y;
+              return `${context.dataset.label}: ${context.parsed.y} (${percent}%)`;
+            }
           }
+        },
+        legend: {
+          position: 'bottom'
         }
+      },
+      scales: {
+        x: { stacked: tipusChart === 'bar' },
+        y: { stacked: tipusChart === 'bar', beginAtZero: true, ticks: { precision: 0 } }
       }
     }
   });
 }
 
 // Actualitzar gràfic quan canviïn els filtres
-['filterColla', 'filterYear', 'filterTipusCastell', 'filterResultat', 'filterVisualitzacio'].forEach(id => {
-  document.getElementById(id).addEventListener('change', dibuixarGrafics);
-});
+['filterColla', 'filterYear', 'filterTipusCastell', 'filterResultat', 'filterVisualitzacio', 'tipusChart']
+  .forEach(id => {
+    document.getElementById(id).addEventListener('change', dibuixarGrafics);
+  });
 
 // Executar càrrega de dades quan la pàgina està llesta
 window.addEventListener('load', carregarDades);
