@@ -16,7 +16,7 @@ const coordenadesPlaces = {
     "lon": 2.0100492
   },
   "Plaça Prat de la Riba, Mollet del Vallès": {
-    "lat": 41.5387104,
+    "lat": 41.5386570,
     "lon": 2.2133356
   },
   "Plaça de la Vila, Parets del Vallès": {
@@ -176,8 +176,8 @@ const coordenadesPlaces = {
     "lon": 1.6728643
   },
   "Pati del MNACTEC, Terrassa": {
-    "lat": 41.5629623,
-    "lon": 2.0100492
+    "lat": 41.5654030,
+    "lon": 2.0072331
   },
   "Plaça del Loreto, Ulldemolins": {
     "lat": 41.3205351,
@@ -708,8 +708,8 @@ const coordenadesPlaces = {
     "lon": 2.017369
   },
   "Plaça de la Vila, Les Cabanyes": {
-    "lat": 41.3463797,
-    "lon": 1.6981536
+    "lat": 41.3725546,
+    "lon": 1.6887097
   },
   "Hospital Clínic, Barcelona": {
     "lat": 41.3894459,
