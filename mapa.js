@@ -211,6 +211,7 @@ function dibuixarMapa() {
     const lon = Number(coords.lon);
     if (isNaN(lat) || isNaN(lon)) return;
 
+    // agrupem per coordenades (mateix lloc físic)
     const key = `${lat.toFixed(5)}|${lon.toFixed(5)}`;
 
     if (!grups[key]) {
@@ -219,19 +220,31 @@ function dibuixarMapa() {
         lon,
         placa,
         ciutat,
-        estats: {}
+        estats: {},          // carregat / descarregat / intent
+        tipus: {}            // tipusCastell -> estat -> count
       };
     }
 
     const estat = d.castell_result?.name || "Desconegut";
+    const tipus = d.castell_type?.name || "Desconegut";
+
+    // Comptar estats
     grups[key].estats[estat] = (grups[key].estats[estat] || 0) + 1;
+
+    // Comptar per tipus + estat 
+    if (!grups[key].tipus[tipus]) {
+      grups[key].tipus[tipus] = {};
+    }
+    grups[key].tipus[tipus][estat] =
+      (grups[key].tipus[tipus][estat] || 0) + 1;
   });
 
   Object.values(grups).forEach(grup => {
-    const { lat, lon, placa, ciutat, estats } = grup;
+    const { lat, lon, placa, ciutat, estats, tipus } = grup;
 
     const total = Object.values(estats).reduce((a, b) => a + b, 0);
 
+    // HTML bàsic
     let popupHtml = `
       <b>${placa}</b><br>
       <i>${ciutat}</i><br>
@@ -242,12 +255,28 @@ function dibuixarMapa() {
     for (const [estat, count] of Object.entries(estats)) {
       popupHtml += `<li>${estat}: ${count}</li>`;
     }
-
     popupHtml += `</ul>`;
+
+    //Info extra
+    popupHtml += `<details>
+      <summary><b>Veure castells per tipus</b></summary>
+      <ul>
+    `;
+
+    for (const [tipusNom, estatsTipus] of Object.entries(tipus)) {
+      popupHtml += `<li><b>${tipusNom}</b><ul>`;
+      for (const [estat, count] of Object.entries(estatsTipus)) {
+        popupHtml += `<li>${estat}: ${count}</li>`;
+      }
+      popupHtml += `</ul></li>`;
+    }
+
+    popupHtml += `</ul></details>`;
 
     L.marker([lat, lon])
       .addTo(markersLayer)
       .bindPopup(popupHtml);
   });
 }
+
 
