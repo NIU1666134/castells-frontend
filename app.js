@@ -1,23 +1,17 @@
 let dadesCastells = [];
 let map;
 let coordenadesCache = {};
+let chartInstance;
 
 // Carregar dades des de l'API proxy (Node.js)
 async function carregarDades() {
   const loader = document.getElementById('loader');
+  loader.style.display = 'flex'; // mostrar loader
   loader.style.display = 'flex'; // mostrar loader i tapar la pàgina
 
   console.log("Iniciant càrrega de dades...");
 
-  try {
-    const response = await fetch("https://castells-proxy.onrender.com/api/actuacions");
-    const data = await response.json();
-
-    if (Array.isArray(data.results)) {
-      dadesCastells = data.results;
-      console.log("Dades carregades correctament:", dadesCastells.length, "items");
-    } else {
-      dadesCastells = [];
+@@ -21,151 +21,159 @@
       console.warn("L'API no ha retornat un array vàlid.");
     }
 
@@ -30,6 +24,7 @@ async function carregarDades() {
 
     // Dibuixar gràfics i mapa
     dibuixarGrafics();
+    if (!map) inicialitzarMapa(); else dibuixarMapa();
     if (!map) {
       inicialitzarMapa();
     } else {
@@ -39,9 +34,11 @@ async function carregarDades() {
   } catch (err) {
     console.error("ERROR carregant dades API:", err);
   } finally {
+    loader.style.display = 'none'; // amagar loader
     loader.style.display = 'none'; // amagar loader quan tot ha acabat
   }
 }
+
 
 
 
@@ -109,7 +106,6 @@ function filtrarDades(filters = {}) {
 
 // Dibuixar gràfics a partir de les dades filtrades i tipus de visualització
 function dibuixarGrafics() {
-  // Recollir filtres
   const filters = {
     colla: document.getElementById('filterColla').value || null,
     any: document.getElementById('filterYear').value || null,
@@ -117,90 +113,64 @@ function dibuixarGrafics() {
     resultat: document.getElementById('filterResultat').value || null
   };
 
-  const tipusVisualitzacio = document.getElementById('filterVisualitzacio').value;
-  const tipusChart = document.getElementById('tipusChart').value || 'bar';
-
   const dadesFiltrades = filtrarDades(filters);
+  const tipusVisualitzacio = document.getElementById('filterVisualitzacio').value;
 
-  // Obtenir categories principals i subcategories (per apilar)
-  let categories = [];
-  let subcategories = [];
-  let conteig = {};
+  let counts = {};
 
-  dadesFiltrades.forEach(d => {
-    const any = d.date ? new Date(d.date).getFullYear() : "Desconegut";
-    const collaname = d.colla?.name || "Desconeguda";
-    const tipus = d.castell_type?.name || "Desconegut";
-    const resultat = d.castell_result?.name || "Desconegut";
+  if (tipusVisualitzacio === 'any') {
+    dadesFiltrades.forEach(d => {
+      const any = d.date ? new Date(d.date).getFullYear() : "Desconegut";
+      counts[any] = (counts[any] || 0) + 1;
+    });
+  } else if (tipusVisualitzacio === 'colla') {
+    dadesFiltrades.forEach(d => {
+      const collaname = d.colla?.name || "Desconeguda";
+      counts[collaname] = (counts[collaname] || 0) + 1;
+    });
+  } else if (tipusVisualitzacio === 'tipusCastell') {
+    dadesFiltrades.forEach(d => {
+      const tipus = d.castell_type?.name || "Desconegut";
+      counts[tipus] = (counts[tipus] || 0) + 1;
+    });
+  } else if (tipusVisualitzacio === 'resultat') {
+    dadesFiltrades.forEach(d => {
+      const res = d.castell_result?.name || "Desconegut";
+      counts[res] = (counts[res] || 0) + 1;
+    });
+  }
 
-    let cat, subcat;
-    switch (tipusVisualitzacio) {
-      case 'any': cat = any; subcat = resultat; break;
-      case 'colla': cat = collaname; subcat = resultat; break;
-      case 'tipusCastell': cat = tipus; subcat = resultat; break;
-      case 'resultat': cat = resultat; subcat = tipus; break;
-      default: cat = any; subcat = resultat;
-    }
-
-    categories.push(cat);
-    subcategories.push(subcat);
-
-    if (!conteig[cat]) conteig[cat] = {};
-    conteig[cat][subcat] = (conteig[cat][subcat] || 0) + 1;
-  });
-
-  categories = [...new Set(categories)].sort();
-  subcategories = [...new Set(subcategories)].sort();
-
-  // Construir datasets
-  const datasets = subcategories.map((sub, i) => ({
-    label: sub,
-    data: categories.map(cat => (conteig[cat] && conteig[cat][sub]) ? conteig[cat][sub] : 0),
-    backgroundColor: `hsl(${i*60}, 70%, 50%)`,
-    borderColor: `hsl(${i*60}, 70%, 30%)`,
-    borderWidth: 1,
-    fill: tipusChart === 'line' ? false : true,
-  }));
-
-  // Crear o destruir gràfic existent
   const ctx = document.getElementById('chartCastells').getContext('2d');
   if (window.chartInstance) window.chartInstance.destroy();
 
   window.chartInstance = new Chart(ctx, {
-    type: tipusChart,
+    type: 'bar',
     data: {
-      labels: categories,
-      datasets: datasets
+      labels: Object.keys(counts),
+      datasets: [{
+        label: 'Nombre de castells',
+        data: Object.values(counts),
+        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+      }]
     },
     options: {
       responsive: true,
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              const total = context.dataset.data.reduce((a,b)=>a+b,0);
-              const percent = total ? ((context.parsed.y / total) * 100).toFixed(1) : context.parsed.y;
-              return `${context.dataset.label}: ${context.parsed.y} (${percent}%)`;
-            }
-          }
-        },
-        legend: {
-          position: 'bottom'
-        }
-      },
       scales: {
-        x: { stacked: tipusChart === 'bar' },
-        y: { stacked: tipusChart === 'bar', beginAtZero: true, ticks: { precision: 0 } }
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0
+          }
+        }
       }
     }
   });
 }
 
 // Actualitzar gràfic quan canviïn els filtres
-['filterColla', 'filterYear', 'filterTipusCastell', 'filterResultat', 'filterVisualitzacio', 'tipusChart']
-  .forEach(id => {
-    document.getElementById(id).addEventListener('change', dibuixarGrafics);
-  });
+['filterColla', 'filterYear', 'filterTipusCastell', 'filterResultat', 'filterVisualitzacio'].forEach(id => {
+  document.getElementById(id).addEventListener('change', dibuixarGrafics);
+});
 
 // Executar càrrega de dades quan la pàgina està llesta
 window.addEventListener('load', carregarDades);
