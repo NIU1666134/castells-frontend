@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visualització de Castells</title>
 
   <!-- BOOTSTRAP CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- CHART.JS -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- LEAFLET CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -17,75 +14,48 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
 
   <!-- CSS PERSONALITZAT -->
-  <link href="styles.css" rel="stylesheet" />
-
-  <style>
-    /* Loader overlay que tapa tota la pàgina */
-    #loader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(255,255,255,0.9);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      font-family: Arial, sans-serif;
-    }
-    .spinner-border {
-      width: 3rem;
-      height: 3rem;
-    }
-    #loader-text {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- LOADER -->
+  <!-- Loader -->
   <div id="loader">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Carregant...</span>
-    </div>
+    <div class="spinner-border text-primary" role="status"></div>
     <div id="loader-text">Carregant dades...</div>
   </div>
 
-  <!-- MENÚ SUPERIOR -->
+  <!-- Menú superior -->
   <div class="container my-4 text-center">
-    <button class="btn-top btn-top-grafics me-2" onclick="mostrarGrafics()">Gràfics</button>
-    <button class="btn-top btn-top-mapa" onclick="mostrarMapa()">Mapa</button>
+    <button class="btn btn-primary me-2" onclick="mostrarGrafics()">Gràfics</button>
+    <button class="btn btn-secondary" onclick="mostrarMapa()">Mapa</button>
   </div>
 
-  <!-- SECCIÓ GRÀFICS -->
+  <!-- Secció Gràfics -->
   <div id="seccioGrafics" class="container my-5">
-    <h1 class="section-title mb-4 text-center">Visualització de Castells</h1>
+    <h1 class="text-center mb-4">Visualització de Castells</h1>
 
     <div class="row mb-4">
       <div class="col-md-3 mb-2">
-        <label for="filterColla" class="form-label">Colla</label>
+        <label for="filterColla">Colla</label>
         <select id="filterColla" class="form-select"><option value="">Totes</option></select>
       </div>
       <div class="col-md-3 mb-2">
-        <label for="filterYear" class="form-label">Any</label>
+        <label for="filterYear">Any</label>
         <select id="filterYear" class="form-select"><option value="">Tots</option></select>
       </div>
       <div class="col-md-3 mb-2">
-        <label for="filterTipusCastell" class="form-label">Tipus de Castell</label>
+        <label for="filterTipusCastell">Tipus de Castell</label>
         <select id="filterTipusCastell" class="form-select"><option value="">Tots</option></select>
       </div>
       <div class="col-md-3 mb-2">
-        <label for="filterResultat" class="form-label">Resultat</label>
+        <label for="filterResultat">Resultat</label>
         <select id="filterResultat" class="form-select"><option value="">Tots</option></select>
       </div>
     </div>
 
     <div class="row mb-4">
-      <div class="col-md-3 mb-2">
-        <label for="filterVisualitzacio" class="form-label">Visualització</label>
+      <div class="col-md-3">
+        <label for="filterVisualitzacio">Visualització</label>
         <select id="filterVisualitzacio" class="form-select">
           <option value="any">Per any</option>
           <option value="colla">Per colla</option>
@@ -98,44 +68,21 @@
     <canvas id="chartCastells" height="400"></canvas>
   </div>
 
-  <!-- SECCIÓ MAPA -->
+  <!-- Secció Mapa -->
   <div id="seccioMapa" class="container my-5" style="display:none">
-    <h1 class="section-title mb-4 text-center">Mapa de Places Castelleres</h1>
-
-    <div class="row mb-4">
-      <div class="col-md-3 mb-2">
-        <label for="filterCollaMap" class="form-label">Colla</label>
-        <select id="filterCollaMap" class="form-select"><option value="">Totes</option></select>
-      </div>
-      <div class="col-md-3 mb-2">
-        <label for="filterYearMap" class="form-label">Any</label>
-        <select id="filterYearMap" class="form-select"><option value="">Tots</option></select>
-      </div>
-      <div class="col-md-3 mb-2">
-        <label for="filterTipusCastellMap" class="form-label">Tipus de Castell</label>
-        <select id="filterTipusCastellMap" class="form-select"><option value="">Tots</option></select>
-      </div>
-      <div class="col-md-3 mb-2">
-        <label for="filterResultatMap" class="form-label">Resultat</label>
-        <select id="filterResultatMap" class="form-select"><option value="">Tots</option></select>
-      </div>
-    </div>
-
+    <h1 class="text-center mb-4">Mapa de Places Castelleres</h1>
     <div id="map" style="height:500px;"></div>
   </div>
 
-  <!-- LLIBRERIES -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- SCRIPTS PROPIS -->
   <script src="app.js"></script>
   <script src="coordenades.js"></script>
   <script src="mapa.js"></script>
 
-  <!-- CONTROL DE PESTANYES -->
   <script>
     let mapaInicialitzat = false;
     function mostrarGrafics() {
@@ -147,13 +94,12 @@
       document.getElementById("seccioMapa").style.display = "block";
       if (!mapaInicialitzat) {
         inicialitzarMapa();
-        omplirFiltresMapa();
-        dibuixarMapa();
         mapaInicialitzat = true;
         setTimeout(() => map.invalidateSize(), 200);
       }
     }
   </script>
+
 </body>
 </html>
 
