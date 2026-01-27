@@ -207,12 +207,16 @@ function dibuixarMapa() {
     const coords = obtenirCoordenades(d);
     if (!coords || coords.lat == null || coords.lon == null) return;
 
-    const key = `${coords.lat.toFixed(5)}|${coords.lon.toFixed(5)}`;
+    const lat = Number(coords.lat);
+    const lon = Number(coords.lon);
+    if (isNaN(lat) || isNaN(lon)) return;
+
+    const key = `${lat.toFixed(5)}|${lon.toFixed(5)}`;
 
     if (!grups[key]) {
       grups[key] = {
-        lat: coords.lat,
-        lon: coords.lon,
+        lat,
+        lon,
         placa,
         ciutat,
         estats: {}
@@ -246,3 +250,4 @@ function dibuixarMapa() {
       .bindPopup(popupHtml);
   });
 }
+
