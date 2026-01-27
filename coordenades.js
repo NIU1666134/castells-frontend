@@ -2248,8 +2248,8 @@ const coordenadesPlaces = {
     "lon": 2.1174839
   },
   "La Troca, Granollers": {
-    "lat": 46.3502434,
-    "lon": 23.2127882
+    "lat": 41.6025281,
+    "lon": 2.2836894
   },
   "Badalona, Badalona": {
     "lat": 41.4457071,
