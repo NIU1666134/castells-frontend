@@ -1,12 +1,11 @@
 let dadesCastells = [];
 let map;
 let coordenadesCache = {};
-let chartInstance;
 
-// Carregar dades des de l'API proxy
+// Carregar dades des de l'API proxy (Node.js)
 async function carregarDades() {
   const loader = document.getElementById('loader');
-  loader.style.display = 'flex'; // mostrar loader
+  loader.style.display = 'flex'; // mostrar loader i tapar la pàgina
 
   console.log("Iniciant càrrega de dades...");
 
@@ -31,14 +30,20 @@ async function carregarDades() {
 
     // Dibuixar gràfics i mapa
     dibuixarGrafics();
-    if (!map) inicialitzarMapa(); else dibuixarMapa();
+    if (!map) {
+      inicialitzarMapa();
+    } else {
+      dibuixarMapa();
+    }
 
   } catch (err) {
     console.error("ERROR carregant dades API:", err);
   } finally {
-    loader.style.display = 'none'; // amagar loader
+    loader.style.display = 'none'; // amagar loader quan tot ha acabat
   }
 }
+
+
 
 // Omplir filtres de la secció de gràfics
 function omplirFiltres() {
@@ -87,7 +92,7 @@ function omplirFiltres() {
   });
 }
 
-// Filtrar dades segons selecció de filtres
+// Filtrar dades segons selecció de filtres (ús genèric)
 function filtrarDades(filters = {}) {
   return dadesCastells.filter(d => {
     const collaname = d.colla?.name || "Desconeguda";
@@ -102,7 +107,7 @@ function filtrarDades(filters = {}) {
   });
 }
 
-// Dibuixar gràfics
+// Dibuixar gràfics a partir de les dades filtrades i tipus de visualització
 function dibuixarGrafics() {
   const filters = {
     colla: document.getElementById('filterColla').value || null,
@@ -116,19 +121,32 @@ function dibuixarGrafics() {
 
   let counts = {};
 
-  dadesFiltrades.forEach(d => {
-    let key;
-    if (tipusVisualitzacio === 'any') key = d.date ? new Date(d.date).getFullYear() : "Desconegut";
-    else if (tipusVisualitzacio === 'colla') key = d.colla?.name || "Desconeguda";
-    else if (tipusVisualitzacio === 'tipusCastell') key = d.castell_type?.name || "Desconegut";
-    else if (tipusVisualitzacio === 'resultat') key = d.castell_result?.name || "Desconegut";
-    counts[key] = (counts[key] || 0) + 1;
-  });
+  if (tipusVisualitzacio === 'any') {
+    dadesFiltrades.forEach(d => {
+      const any = d.date ? new Date(d.date).getFullYear() : "Desconegut";
+      counts[any] = (counts[any] || 0) + 1;
+    });
+  } else if (tipusVisualitzacio === 'colla') {
+    dadesFiltrades.forEach(d => {
+      const collaname = d.colla?.name || "Desconeguda";
+      counts[collaname] = (counts[collaname] || 0) + 1;
+    });
+  } else if (tipusVisualitzacio === 'tipusCastell') {
+    dadesFiltrades.forEach(d => {
+      const tipus = d.castell_type?.name || "Desconegut";
+      counts[tipus] = (counts[tipus] || 0) + 1;
+    });
+  } else if (tipusVisualitzacio === 'resultat') {
+    dadesFiltrades.forEach(d => {
+      const res = d.castell_result?.name || "Desconegut";
+      counts[res] = (counts[res] || 0) + 1;
+    });
+  }
 
   const ctx = document.getElementById('chartCastells').getContext('2d');
-  if (chartInstance) chartInstance.destroy();
+  if (window.chartInstance) window.chartInstance.destroy();
 
-  chartInstance = new Chart(ctx, {
+  window.chartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: Object.keys(counts),
@@ -143,18 +161,20 @@ function dibuixarGrafics() {
       scales: {
         y: {
           beginAtZero: true,
-          ticks: { precision: 0 }
+          ticks: {
+            precision: 0
+          }
         }
       }
     }
   });
 }
 
-// Detectar canvis en filtres
+// Actualitzar gràfic quan canviïn els filtres
 ['filterColla', 'filterYear', 'filterTipusCastell', 'filterResultat', 'filterVisualitzacio'].forEach(id => {
   document.getElementById(id).addEventListener('change', dibuixarGrafics);
 });
 
-// Carregar dades quan la pàgina està llesta
+// Executar càrrega de dades quan la pàgina està llesta
 window.addEventListener('load', carregarDades);
 
