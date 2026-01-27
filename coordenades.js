@@ -112,8 +112,8 @@ const coordenadesPlaces = {
     "lon": 2.4230925
   },
   "Pampona, Pamplona": {
-    "lat": 25.7989865,
-    "lon": -100.1714696
+    "lat": 42.8160484,
+    "lon": -1.6436882
   },
   "Hospital Joan XXIII, Tarragona": {
     "lat": 41.1252242,
@@ -172,16 +172,16 @@ const coordenadesPlaces = {
     "lon": 2.0993236
   },
   "Parròquia Santa Maria, Cubelles": {
-    "lat": 10.2616159,
-    "lon": -63.626913
+    "lat": 41.2085853,
+    "lon": 1.6728643
   },
   "Pati del MNACTEC, Terrassa": {
     "lat": 41.5629623,
     "lon": 2.0100492
   },
   "Plaça del Loreto, Ulldemolins": {
-    "lat": 40.1579403,
-    "lon": -0.1665687
+    "lat": 41.3205351,
+    "lon": 0.8800680
   },
   "A l'espai 1 d'Octubre, La Cellera de Ter": {
     "lat": 41.9686921,
@@ -340,8 +340,8 @@ const coordenadesPlaces = {
     "lon": 1.3768713
   },
   "Plaça de la Llibertat, Salt": {
-    "lat": 38.3660065,
-    "lon": -0.4945866
+    "lat": 41.974703,
+    "lon": 2.7913354
   },
   "Plaça República, Prada": {
     "lat": 42.5669036,
@@ -560,8 +560,8 @@ const coordenadesPlaces = {
     "lon": 1.2482132
   },
   "Ateneu del Pallars, Pallars": {
-    "lat": 61.3982223,
-    "lon": 16.045612
+    "lat": 42.1654735,
+    "lon": 0.8946743
   },
   "Plaça de l'Església, Tremp": {
     "lat": 42.1315345,
@@ -608,8 +608,8 @@ const coordenadesPlaces = {
     "lon": 2.7164641
   },
   "Plaça Major, Òdena": {
-    "lat": 40.4153949,
-    "lon": -3.7069974
+    "lat": 41.606549,
+    "lon": 1.642336
   },
   "Plaça de l'Ajuntament, Santa Margarida de Montbui": {
     "lat": 41.5746991,
@@ -640,8 +640,8 @@ const coordenadesPlaces = {
     "lon": 0.8561525
   },
   "Plaça Joan Palau, Perafort": {
-    "lat": 39.5442216,
-    "lon": -0.3853933
+    "lat": 41.1908468,
+    "lon": 1.2557224
   },
   "Plaça Abat Oliba, Cerdanyola del Vallès": {
     "lat": 41.4916471,
@@ -756,8 +756,8 @@ const coordenadesPlaces = {
     "lon": 2.1879337
   },
   "Plaça Major, Porqueres": {
-    "lat": 40.4153949,
-    "lon": -3.7069974
+    "lat": 42.120156,
+    "lon": 2.746438
   },
   "Plaça Catalunya, Bellvei": {
     "lat": 41.2409174,
@@ -1196,8 +1196,8 @@ const coordenadesPlaces = {
     "lon": 1.2546057
   },
   "Plaça de l'Ajuntament, Uharte": {
-    "lat": 55.6760623,
-    "lon": 12.5689089
+    "lat": 42.8312126,
+    "lon": -1.5905499
   },
   "Espai Molí d'en Ral, Caldes de Montbui": {
     "lat": 41.632265,
@@ -1268,8 +1268,8 @@ const coordenadesPlaces = {
     "lon": 1.724437
   },
   "Piscina Municipal, Castellví de Rosanes": {
-    "lat": 42.1346561,
-    "lon": -0.3498121
+    "lat": 41.452044,
+    "lon": 1.898111
   },
   "Esparreguera, Esparreguera": {
     "lat": 41.530525,
@@ -1352,8 +1352,8 @@ const coordenadesPlaces = {
     "lon": 1.131468
   },
   "Rotonda de la Platja, Manacor": {
-    "lat": 38.9754006,
-    "lon": -0.141528
+    "lat": 39.5203561,
+    "lon": 3.3139896
   },
   "Cala Murada, Manacor": {
     "lat": 39.4508168,
@@ -1364,8 +1364,8 @@ const coordenadesPlaces = {
     "lon": 1.6805335
   },
   "Plaça de l'Església, Sant Llorenç des Cardassar": {
-    "lat": 39.6109984,
-    "lon": 3.2855809
+    "lat": 39.6110557,
+    "lon": 3.2859515
   },
   "Plaça Sant Jordi, La Bisbal del Penedès": {
     "lat": 41.2801202,
@@ -1452,8 +1452,8 @@ const coordenadesPlaces = {
     "lon": -1.7653411
   },
   "Plaça de l'Ajuntament, Pineda de Mar": {
-    "lat": 55.6760623,
-    "lon": 12.5689089
+    "lat": 41.6274708,
+    "lon": 2.6893524
   },
   "Rambla de Figueres, Figueres": {
     "lat": 42.2664612,
@@ -1484,8 +1484,8 @@ const coordenadesPlaces = {
     "lon": 1.0263516
   },
   "Església de Sant Antoni, Vilanova i la Geltrú": {
-    "lat": 39.8897374,
-    "lon": 4.2617655
+    "lat": 41.2268838,
+    "lon": 2.7235610
   },
   "Basílica de Montserrat, Monestir de Montserrat": {
     "lat": 41.5933945,
@@ -1692,8 +1692,8 @@ const coordenadesPlaces = {
     "lon": 2.1054794
   },
   "Plaça de l'Ajuntament, Das": {
-    "lat": 55.6760623,
-    "lon": 12.5689089
+    "lat": 42.3626624,
+    "lon": 1.8720246
   },
   "Grand-Place, Brussel·les": {
     "lat": 50.8467291,
@@ -1744,8 +1744,8 @@ const coordenadesPlaces = {
     "lon": 2.0758729
   },
   "La Central, Vic": {
-    "lat": -37.8326622,
-    "lon": 144.9567877
+    "lat": 41.9345206,
+    "lon": 2.254623
   },
   "Parròquia de Sant Ildefons, Barcelona": {
     "lat": 41.3646588,
@@ -1760,8 +1760,8 @@ const coordenadesPlaces = {
     "lon": 2.3977693
   },
   "Camp de Futbol, Vilanova de Prades": {
-    "lat": 38.2642483,
-    "lon": -0.6631923
+    "lat": 41.348518,
+    "lon": 0.9602868
   },
   "Plaça del Vi, Girona": {
     "lat": 41.9830588,
@@ -1960,8 +1960,8 @@ const coordenadesPlaces = {
     "lon": 2.2713731
   },
   "Antic Escorxador, Esparreguera": {
-    "lat": 39.5397475,
-    "lon": -0.3919867
+    "lat": 41.5419361,
+    "lon": 1.8700405
   },
   "Plaça de Santa Anna, Mataró": {
     "lat": 41.5379652,
@@ -2096,8 +2096,8 @@ const coordenadesPlaces = {
     "lon": 2.0755662
   },
   "Plaça Espanya, Madrid": {
-    "lat": 38.5386817,
-    "lon": -0.1339468
+    "lat": 40.5924993,
+    "lon": -3.4119882
   },
   "Parc Francesc Macià, Malgrat de Mar": {
     "lat": 41.6506467,
@@ -2116,12 +2116,12 @@ const coordenadesPlaces = {
     "lon": 2.2298132
   },
   "Casa de la Societat, Barberà de la Conca": {
-    "lat": 38.6108874,
-    "lon": -0.4197874
+    "lat": 41.4119041,
+    "lon": 1.2261799
   },
   "Plaça de l'Ermita de Sant Antoni Abat, L'Arboç": {
-    "lat": 40.1360576,
-    "lon": -0.2844308
+    "lat": 41.2648639,
+    "lon": 1.5989607
   },
   "\"Plaça del 4d8\" Campus Nord, Barcelona": {
     "lat": 41.388463,
@@ -2176,8 +2176,8 @@ const coordenadesPlaces = {
     "lon": 2.171516
   },
   "Prat Gran, Andorra la Vella": {
-    "lat": 43.3912338,
-    "lon": 0.9208828
+    "lat": 42.533153,
+    "lon": 1.57857
   },
   "Plaça Rector Homs, Terrassa": {
     "lat": 41.5669141,
@@ -2232,8 +2232,8 @@ const coordenadesPlaces = {
     "lon": 1.3959508
   },
   "Basílica i plaça, Barcelona": {
-    "lat": 54.6858867,
-    "lon": 25.2877949
+    "lat": 41.3821404,
+    "lon": 2.1761895
   },
   "Plana Barcelona, Calaf": {
     "lat": 41.8024516,
@@ -2272,8 +2272,8 @@ const coordenadesPlaces = {
     "lon": 2.2153888
   },
   "Càmping Azureva, Argelers": {
-    "lat": 46.4147115,
-    "lon": -1.5264426
+    "lat": 42.5359777,
+    "lon": 3.0316526
   },
   "Federació Obrera, Molins de Rei": {
     "lat": 41.4150988,
@@ -2288,12 +2288,12 @@ const coordenadesPlaces = {
     "lon": 1.2479346
   },
   "Plaça de l'Església Parròquia, Sant Jaume d'Enveja": {
-    "lat": 39.4820154,
-    "lon": -0.3974247
+    "lat": 40.7050345,
+    "lon": 0.7170658
   },
   "La Villete, París": {
-    "lat": -30.038073,
-    "lon": -51.1872194
+    "lat": 48.8875148,
+    "lon": 2.3798684
   },
   "L'Alguer, L'alguer": {
     "lat": 40.5749594,
@@ -2332,12 +2332,12 @@ const coordenadesPlaces = {
     "lon": 1.2544345
   },
   "Plaça de l'Ajuntament, Aquisgrà": {
-    "lat": 55.6760623,
-    "lon": 12.5689089
+    "lat": 50.7759534,
+    "lon": 6.0838921
   },
   "Estadi Chio Aachen, Aquisgrà": {
-    "lat": 50.776351,
-    "lon": 6.083862
+    "lat": 50.7955492,
+    "lon": 6.0948047
   },
   "Ribesaltes, Ribesaltes": {
     "lat": 42.7663812,
@@ -2404,8 +2404,8 @@ const coordenadesPlaces = {
     "lon": 2.6214262
   },
   "Plaza Cardenal, Ermua": {
-    "lat": 39.5548018,
-    "lon": 2.6928567
+    "lat": 43.1867051,
+    "lon": -2.5024423
   },
   "Plaça de l'Església Vella, Vila-seca": {
     "lat": 41.1132433,
@@ -2440,8 +2440,8 @@ const coordenadesPlaces = {
     "lon": 3.194738
   },
   "Biblioteca Municipal, Palau-Solità i Plegamans": {
-    "lat": -2.1956534,
-    "lon": -79.8825743
+    "lat": 41.5897051,
+    "lon": 2.1795265
   },
   "Rambla Sant Francesc, Vilafranca del Penedès": {
     "lat": 41.3454122,
@@ -2508,8 +2508,8 @@ const coordenadesPlaces = {
     "lon": 2.4909668
   },
   "Jardins del Castell, Vila-seca": {
-    "lat": 39.5442857,
-    "lon": -0.3859194
+    "lat": 41.1141067,
+    "lon": 1.1483113
   },
   "Auditorium Friedrichstrasse, Berlín": {
     "lat": 52.5127673,
@@ -2552,8 +2552,8 @@ const coordenadesPlaces = {
     "lon": 1.5333357
   },
   "Plaça Gambetta, Argelers": {
-    "lat": 43.1933642,
-    "lon": -0.6040902
+    "lat": 42.545789,
+    "lon": 3.0246722
   },
   "Plaça de l'Església, Isona i Conca Dellà": {
     "lat": 42.1196605,
@@ -2676,8 +2676,8 @@ const coordenadesPlaces = {
     "lon": 2.1534231
   },
   "Església del Lledó, Valls": {
-    "lat": 40.9549627,
-    "lon": 0.2771182
+    "lat": 41.2840199,
+    "lon": 1.2474921
   },
   "Plaça Universitat, Barcelona": {
     "lat": 41.3855048,
