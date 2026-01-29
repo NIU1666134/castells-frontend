@@ -143,15 +143,20 @@ function dibuixarGrafics() {
     });
   }
 
+  // ✅ AFEGIT: ordenar de més a menys
+  const sortedEntries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const labels = sortedEntries.map(([label]) => label);
+  const values = sortedEntries.map(([, value]) => value);
+
   const ctx = document.getElementById('chartCastells').getContext('2d');
   if (window.chartInstance) window.chartInstance.destroy();
 
   window.chartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: Object.keys(counts),
+      labels: labels,
       datasets: [{
-        data: Object.values(counts),
+        data: values,
         backgroundColor: 'rgba(255,42,26,0.45)',
         borderColor: 'rgba(255,42,26,1)',
         borderWidth: 1
@@ -159,14 +164,11 @@ function dibuixarGrafics() {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, // 🔑 CLAU ABSOLUTA
+      maintainAspectRatio: false,
 
       plugins: {
-        legend: {
-          display: false
-        },
+        legend: { display: false },
 
-        // tooltip amb percentatge
         tooltip: {
           callbacks: {
             label: function(context) {
@@ -184,19 +186,14 @@ function dibuixarGrafics() {
       scales: {
         x: {
           ticks: {
-            font: {
-              family: 'Inter'
-            }
+            font: { family: 'Inter' }
           }
         },
-
         y: {
           beginAtZero: true,
           ticks: {
             precision: 0,
-            font: {
-              family: 'Inter'
-            }
+            font: { family: 'Inter' }
           }
         }
       }
