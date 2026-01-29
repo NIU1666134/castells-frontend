@@ -151,18 +151,37 @@ function dibuixarGrafics() {
     data: {
       labels: Object.keys(counts),
       datasets: [{
-        label: 'Nombre de castells',
         data: Object.values(counts),
-        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        backgroundColor: 'rgba(255,42,26,0.45)',
+        borderColor: 'rgba(255,42,26,1)',
+        borderWidth: 1
       }]
     },
     options: {
       responsive: true,
+
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+
       scales: {
+        x: {
+          ticks: {
+            font: {
+              family: 'Inter'
+            }
+          }
+        },
+
         y: {
           beginAtZero: true,
           ticks: {
-            precision: 0
+            precision: 0,
+            font: {
+              family: 'Inter'
+            }
           }
         }
       }
