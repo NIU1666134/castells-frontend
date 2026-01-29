@@ -166,7 +166,9 @@ inicialitzarMapa();
 omplirFiltresMapa();
 dibuixarMapa();
 mapaInicialitzat=true;
-setTimeout(()=>map.invalidateSize(),200);
+setTimeout(() => {
+  map.invalidateSize(true);
+}, 300);
 }
 }
 </script>
