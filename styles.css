@@ -120,3 +120,28 @@ canvas {
   height: 450px; /* pots pujar o baixar */
 }
 
+/* EXPLICACIONS */
+
+.cccc-explicacio {
+  margin-bottom: 40px;
+}
+
+.cccc-explicacio-box {
+  border-left: 6px solid var(--cccc-red);
+  padding: 20px 30px;
+  max-width: 900px;
+}
+
+.cccc-explicacio-box h2 {
+  font-family: Oswald;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.cccc-explicacio-box p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
