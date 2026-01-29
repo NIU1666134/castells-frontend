@@ -83,14 +83,11 @@ select:focus {
 
 canvas {
   margin-top: 40px;
-  border: 4px solid var(--cccc-red);
-  border-radius: 0;
 }
 
 /* MAPA */
 
 #map {
-  border: 4px solid var(--cccc-red);
   margin-top: 30px;
 }
 
