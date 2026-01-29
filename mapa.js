@@ -221,12 +221,14 @@ function dibuixarMapa() {
         placa,
         ciutat,
         estats: {},          // carregat / descarregat / intent
-        tipus: {}            // tipusCastell -> estat -> count
+        tipus: {},           // tipusCastell -> estat -> count
+        colles: {}           // colla -> count
       };
     }
 
     const estat = d.castell_result?.name || "Desconegut";
     const tipus = d.castell_type?.name || "Desconegut";
+    const colla = d.colla?.name || "Desconeguda"; 
 
     // Comptar estats
     grups[key].estats[estat] = (grups[key].estats[estat] || 0) + 1;
@@ -237,10 +239,13 @@ function dibuixarMapa() {
     }
     grups[key].tipus[tipus][estat] =
       (grups[key].tipus[tipus][estat] || 0) + 1;
+
+    // Comptar colles
+    grups[key].colles[colla] = (grups[key].colles[colla] || 0) + 1;
   });
 
   Object.values(grups).forEach(grup => {
-    const { lat, lon, placa, ciutat, estats, tipus } = grup;
+    const { lat, lon, placa, ciutat, estats, tipus, colles } = grup;
 
     const total = Object.values(estats).reduce((a, b) => a + b, 0);
 
@@ -257,7 +262,7 @@ function dibuixarMapa() {
     }
     popupHtml += `</ul>`;
 
-    //Info extra
+    //Info extra tipus
     popupHtml += `<details>
       <summary><b>Veure castells per tipus</b></summary>
       <ul>
@@ -269,6 +274,18 @@ function dibuixarMapa() {
         popupHtml += `<li>${estat}: ${count}</li>`;
       }
       popupHtml += `</ul></li>`;
+    }
+
+    popupHtml += `</ul></details>`;
+
+    // Info extra colles
+    popupHtml += `<details>
+      <summary><b>Veure colles</b></summary>
+      <ul>
+    `;
+
+    for (const [collaNom, count] of Object.entries(colles).sort((a, b) => b[1] - a[1])) {
+      popupHtml += `<li>${collaNom}: ${count}</li>`;
     }
 
     popupHtml += `</ul></details>`;
