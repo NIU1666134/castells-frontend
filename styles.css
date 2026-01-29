@@ -88,10 +88,7 @@ select:focus {
 canvas {
   margin-top: 40px;
   max-width: 100%;
-  height: auto !important;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* MAPA */
@@ -117,4 +114,9 @@ canvas {
   font-family: Oswald;
 }
 
-  
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  height: 450px; /* pots pujar o baixar */
+}
+
