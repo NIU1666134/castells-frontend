@@ -160,13 +160,27 @@ function dibuixarGrafics() {
     options: {
       responsive: true,
       maintainAspectRatio: false, // 🔑 CLAU ABSOLUTA
-    
+
       plugins: {
         legend: {
           display: false
+        },
+
+        // tooltip amb percentatge
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.raw;
+              const data = context.dataset.data;
+              const total = data.reduce((acc, v) => acc + v, 0);
+              const pct = total ? (value / total) * 100 : 0;
+
+              return `${context.label}: ${value} (${pct.toFixed(1)}%)`;
+            }
+          }
         }
       },
-    
+
       scales: {
         x: {
           ticks: {
@@ -175,7 +189,7 @@ function dibuixarGrafics() {
             }
           }
         },
-    
+
         y: {
           beginAtZero: true,
           ticks: {
