@@ -57,7 +57,11 @@ body {
 /* CONTENIDORS */
 
 .container {
+  padding-left: 15px;
+  padding-right: 15px;
   max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* FILTRES */
@@ -83,6 +87,11 @@ select:focus {
 
 canvas {
   margin-top: 40px;
+  max-width: 100%;
+  height: auto !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* MAPA */
