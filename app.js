@@ -159,13 +159,14 @@ function dibuixarGrafics() {
     },
     options: {
       responsive: true,
-
+      maintainAspectRatio: false, // 🔑 CLAU ABSOLUTA
+    
       plugins: {
         legend: {
           display: false
         }
       },
-
+    
       scales: {
         x: {
           ticks: {
@@ -174,7 +175,7 @@ function dibuixarGrafics() {
             }
           }
         },
-
+    
         y: {
           beginAtZero: true,
           ticks: {
