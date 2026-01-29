@@ -32,7 +32,6 @@
   height:3rem;
 }
 </style>
-
 </head>
 
 <body>
@@ -45,60 +44,79 @@
 
 <!-- HEADER -->
 <header class="cccc-header">
-
   <div class="cccc-logo">castells</div>
-
   <nav class="cccc-nav">
     <span class="active" onclick="mostrarGrafics()">VISUALITZACIÓ</span>
     <span onclick="mostrarMapa()">MAPA</span>
   </nav>
-
 </header>
 
 <!-- HERO -->
 <div class="hero"></div>
 
+<!-- ===================== -->
 <!-- GRÀFICS -->
+<!-- ===================== -->
+
 <div id="seccioGrafics" class="container my-5">
 
 <h1 class="cccc-title">VISUALITZACIÓ DE CASTELLS</h1>
 
+<!-- EXPLICACIÓ GRÀFICS -->
+<section class="cccc-explicacio">
+  <div class="cccc-explicacio-box">
+    <h2>COM INTERPRETAR ELS GRÀFICS</h2>
+    <p>
+      Aquesta secció permet analitzar l’activitat castellera a partir de diferents
+      criteris com l’any, la colla, el tipus de castell o el resultat obtingut.
+    </p>
+    <p>
+      Els filtres situats a la part superior permeten acotar les dades mostrades,
+      mentre que el selector de visualització defineix com s’agrupen les actuacions
+      al gràfic.
+    </p>
+    <p>
+      Aquesta representació facilita la comparació entre colles, l’evolució temporal
+      del fet casteller i la identificació de tendències generals.
+    </p>
+  </div>
+</section>
+
+<!-- FILTRES -->
 <div class="row">
 
-<div class="col-md-3">
-<label>Colla</label>
-<select id="filterColla" class="form-select"><option value="">Totes</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Colla</label>
+    <select id="filterColla" class="form-select"><option value="">Totes</option></select>
+  </div>
 
-<div class="col-md-3">
-<label>Any</label>
-<select id="filterYear" class="form-select"><option value="">Tots</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Any</label>
+    <select id="filterYear" class="form-select"><option value="">Tots</option></select>
+  </div>
 
-<div class="col-md-3">
-<label>Tipus</label>
-<select id="filterTipusCastell" class="form-select"><option value="">Tots</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Tipus</label>
+    <select id="filterTipusCastell" class="form-select"><option value="">Tots</option></select>
+  </div>
 
-<div class="col-md-3">
-<label>Resultat</label>
-<select id="filterResultat" class="form-select"><option value="">Tots</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Resultat</label>
+    <select id="filterResultat" class="form-select"><option value="">Tots</option></select>
+  </div>
 
 </div>
 
 <div class="row mt-3">
-
-<div class="col-md-3">
-<label>Visualització</label>
-<select id="filterVisualitzacio" class="form-select">
-<option value="any">Per any</option>
-<option value="colla">Per colla</option>
-<option value="tipusCastell">Per tipus</option>
-<option value="resultat">Per resultat</option>
-</select>
-</div>
-
+  <div class="col-md-3">
+    <label>Visualització</label>
+    <select id="filterVisualitzacio" class="form-select">
+      <option value="any">Per any</option>
+      <option value="colla">Per colla</option>
+      <option value="tipusCastell">Per tipus</option>
+      <option value="resultat">Per resultat</option>
+    </select>
+  </div>
 </div>
 
 <div class="chart-wrapper">
@@ -107,33 +125,55 @@
 
 </div>
 
+<!-- ===================== -->
 <!-- MAPA -->
+<!-- ===================== -->
 
 <div id="seccioMapa" class="container my-5" style="display:none">
 
 <h1 class="cccc-title">MAPA DE PLACES CASTELLERES</h1>
 
+<!-- EXPLICACIÓ MAPA -->
+<section class="cccc-explicacio">
+  <div class="cccc-explicacio-box">
+    <h2>COM INTERPRETAR EL MAPA</h2>
+    <p>
+      Aquest mapa mostra les poblacions on s’han registrat actuacions castelleres
+      segons les dades disponibles. Cada marcador correspon a una plaça castellera.
+    </p>
+    <p>
+      Els filtres permeten seleccionar colles, anys, tipus de castell i resultats,
+      facilitant una lectura territorial de l’activitat castellera.
+    </p>
+    <p>
+      L’agrupació de marcadors permet identificar zones amb una alta concentració
+      d’actuacions i observar l’expansió geogràfica del fet casteller al llarg del temps.
+    </p>
+  </div>
+</section>
+
+<!-- FILTRES MAPA -->
 <div class="row">
 
-<div class="col-md-3">
-<label>Colla</label>
-<select id="filterCollaMap" class="form-select"><option value="">Totes</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Colla</label>
+    <select id="filterCollaMap" class="form-select"><option value="">Totes</option></select>
+  </div>
 
-<div class="col-md-3">
-<label>Any</label>
-<select id="filterYearMap" class="form-select"><option value="">Tots</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Any</label>
+    <select id="filterYearMap" class="form-select"><option value="">Tots</option></select>
+  </div>
 
-<div class="col-md-3">
-<label>Tipus</label>
-<select id="filterTipusCastellMap" class="form-select"><option value="">Tots</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Tipus</label>
+    <select id="filterTipusCastellMap" class="form-select"><option value="">Tots</option></select>
+  </div>
 
-<div class="col-md-3">
-<label>Resultat</label>
-<select id="filterResultatMap" class="form-select"><option value="">Tots</option></select>
-</div>
+  <div class="col-md-3">
+    <label>Resultat</label>
+    <select id="filterResultatMap" class="form-select"><option value="">Tots</option></select>
+  </div>
 
 </div>
 
@@ -157,33 +197,27 @@ let mapaInicialitzat=false;
 function mostrarGrafics(){
   document.getElementById("seccioGrafics").style.display = "block";
   document.getElementById("seccioMapa").style.display = "none";
-
   setTimeout(() => {
-    if (window.chartInstance) {
-      window.chartInstance.resize();
-    }
+    if (window.chartInstance) window.chartInstance.resize();
   }, 100);
 }
 
 function mostrarMapa(){
-document.getElementById("seccioGrafics").style.display="none";
-document.getElementById("seccioMapa").style.display="block";
+  document.getElementById("seccioGrafics").style.display="none";
+  document.getElementById("seccioMapa").style.display="block";
 
-if(!mapaInicialitzat){
-inicialitzarMapa();
-omplirFiltresMapa();
-dibuixarMapa();
-mapaInicialitzat=true;
-setTimeout(() => {
-  map.invalidateSize(true);
-}, 300);
-}
+  if(!mapaInicialitzat){
+    inicialitzarMapa();
+    omplirFiltresMapa();
+    dibuixarMapa();
+    mapaInicialitzat=true;
+    setTimeout(() => map.invalidateSize(true), 300);
+  }
 }
 </script>
 
 </body>
 </html>
-
 
 
 
