@@ -155,8 +155,14 @@
 let mapaInicialitzat=false;
 
 function mostrarGrafics(){
-document.getElementById("seccioGrafics").style.display="block";
-document.getElementById("seccioMapa").style.display="none";
+  document.getElementById("seccioGrafics").style.display = "block";
+  document.getElementById("seccioMapa").style.display = "none";
+
+  setTimeout(() => {
+    if (window.chartInstance) {
+      window.chartInstance.resize();
+    }
+  }, 100);
 }
 
 function mostrarMapa(){
